@@ -11,7 +11,7 @@ import util.Vector;
 
 /**
  * TODO: fixedmass extends mass, changes applyforce method
- * XXX.
+ * XXX. TEEEEEEEEEEEST
  * 
  * @author Robert C. Duvall
  */
