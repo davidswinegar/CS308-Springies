@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 
 /**
+ * TODO: add scanner stuff for new classes
+ * TODO: add environment.xsp for environment stuff
+ * TODO: use if statement to choose if file is environment.xsp
  * XXX
  * 
  * @author Robert C. Duvall

@@ -24,6 +24,7 @@ import simulation.Model;
 
 
 /**
+ * TODO: choose second file for loadModel
  * Creates an area of the screen in which the game will be drawn that supports:
  * <UL>
  *   <LI>animation via the Timer
