@@ -10,6 +10,8 @@ import util.Vector;
 
 
 /**
+ * TODO: Muscle extends spring. change first few vector stuff to separate helper method and override that in Muscle for amplitude
+ * TODO: change applicable constants to protected
  * XXX.
  * 
  * @author Robert C. Duvall
