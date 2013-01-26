@@ -11,7 +11,7 @@ import util.Vector;
 
 /**
  * TODO: fixedmass extends mass, changes applyforce method
- * XXX. TEEEEEEEEEEEST
+ * XXX.
  * 
  * @author Robert C. Duvall
  */
@@ -43,6 +43,10 @@ public class Mass extends Sprite {
         myAcceleration.reset();
         // move mass by velocity
         super.update(elapsedTime, bounds);
+    }
+    
+    private double test(){
+    	return 1.2;
     }
 
     /**
