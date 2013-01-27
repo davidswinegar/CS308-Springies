@@ -44,11 +44,7 @@ public class Mass extends Sprite {
         // move mass by velocity
         super.update(elapsedTime, bounds);
     }
-    
-    private double test(){
-    	return 1.2;
-    }
-
+  
     /**
      * XXX.
      */
