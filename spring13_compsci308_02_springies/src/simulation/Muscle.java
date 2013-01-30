@@ -1,28 +1,26 @@
 package simulation;
 
 import java.awt.Dimension;
-
-import util.Vector;
+import view.Canvas;
 
 public class Muscle extends Spring {
-
-	public Muscle(Mass start, Mass end, double length, double kVal) {
+	
+	public static final int OSCILLATION_TIME = 5 * Canvas.FRAMES_PER_SECOND;
+	
+	private double myAmplitude;
+	private double myInitialLength;
+	private int myCounter;
+	
+	public Muscle(Mass start, Mass end, double length, double kVal, double amplitude) {
 		super(start, end, length, kVal);
+		myAmplitude = amplitude;
+		myInitialLength = length;
 	}
 	
     public void update (double elapsedTime, Dimension bounds) {
-        double dx = myStart.getX() - myEnd.getX();
-        double dy = myStart.getY() - myEnd.getY();
-        // apply hooke's law to each attached mass
-        Vector force = new Vector(Vector.angleBetween(dx, dy), 
-                                  myK * (myLength - Vector.distanceBetween(dx, dy)));
-        myStart.applyForce(force);
-        force.negate();
-        myEnd.applyForce(force);
-        // update sprite values based on attached masses
-        setCenter(getCenter(myStart, myEnd));
-        setSize(getSize(myStart, myEnd));
-        setVelocity(Vector.angleBetween(dx, dy), 0);
+    	myCounter++;
+    	setLength(myInitialLength + myAmplitude * Math.sin((myCounter * Math.PI) / (OSCILLATION_TIME / 2)));
+        super.update(elapsedTime, bounds);
     }
 
 }

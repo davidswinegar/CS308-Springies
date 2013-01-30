@@ -45,6 +45,9 @@ public class Factory {
                     else if (SPRING_KEYWORD.equals(type)) {
                         model.add(springCommand(line));
                     }
+                    else if (MUSCLE_KEYWORD.equals(type)) {
+                        model.add(muscleCommand(line));
+                    }
                 }
             }
             input.close();
@@ -110,6 +113,16 @@ public class Factory {
         return new Spring(m1, m2, restLength, ks);
     }
     
+    // create muscle from formatted data
+    private Muscle muscleCommand (Scanner line) {
+        Mass m1 = myMasses.get(line.nextInt());
+        Mass m2 = myMasses.get(line.nextInt());
+        double restLength = line.nextDouble();
+        double ks = line.nextDouble();
+        double amplitude = line.nextDouble();
+        return new Muscle(m1, m2, restLength, ks, amplitude);
+    }
+    
     //create gravity from formatted data
     private Gravity gravityCommand (Scanner line) {
     	double angle = line.nextDouble();
@@ -118,23 +131,23 @@ public class Factory {
     }
     
   //create gravity from formatted data
-    private Viscosity viscosityCommand (Scanner line) {
+    private ViscosityForce viscosityCommand (Scanner line) {
     	double scale = line.nextDouble();
-    	return new Viscosity(scale);
+    	return new ViscosityForce(scale);
     }
     
   //create gravity from formatted data
-    private CenterMass centerMassCommand (Scanner line) {
+    private CenterOfMassForce centerMassCommand (Scanner line) {
     	double magnitude = line.nextDouble();
     	double exponent = line.nextDouble();
-    	return new CenterMass(magnitude, exponent);
+    	return new CenterOfMassForce(magnitude, exponent);
     }
     
   //create gravity from formatted data
-    private Wall wallCommand (Scanner line) {
+    private WallRepulsionForce wallCommand (Scanner line) {
     	int id = line.nextInt();
     	double magnitude = line.nextDouble();
     	double exponent = line.nextDouble();
-    	return new Wall(id, magnitude, exponent);
+    	return new WallRepulsionForce(id, magnitude, exponent);
     }
 }
