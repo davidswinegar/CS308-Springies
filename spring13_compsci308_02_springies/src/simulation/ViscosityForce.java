@@ -8,7 +8,7 @@ import util.Vector;
 
 public class ViscosityForce extends GlobalForce {
 
-	double myScale;
+	private double myScale;
 	
 	public ViscosityForce (double scale){
 		myScale = scale;

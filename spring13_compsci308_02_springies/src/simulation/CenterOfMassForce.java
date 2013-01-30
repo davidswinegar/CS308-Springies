@@ -8,8 +8,8 @@ import util.Vector;
 
 public class CenterOfMassForce extends GlobalForce {
 	
-	double myMagnitude;
-	double myExponent;
+	private double myMagnitude;
+	private double myExponent;
 	
 	public CenterOfMassForce(double magnitude, double exponent){
 		myMagnitude = magnitude;
