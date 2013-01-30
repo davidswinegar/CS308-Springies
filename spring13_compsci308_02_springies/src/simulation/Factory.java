@@ -19,6 +19,11 @@ public class Factory {
     // data file keywords
     private static final String MASS_KEYWORD = "mass";
     private static final String SPRING_KEYWORD = "spring";
+    private static final String MUSCLE_KEYWORD = "muscle";
+    private static final String GRAVITY_KEYWORD = "gravity";
+    private static final String VISCOSITY_KEYWORD = "viscosity";
+    private static final String CENTERMASS_KEYWORD = "centermass";
+    private static final String WALL_KEYWORD = "wall";
 
     // mass IDs
     Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
@@ -49,6 +54,35 @@ public class Factory {
             e.printStackTrace();
         }
     }
+    
+    public void loadEnvironment (Model model, File modelFile) {
+        try {
+            Scanner input = new Scanner(modelFile);
+            while (input.hasNext()) {
+                Scanner line = new Scanner(input.nextLine());
+                if (line.hasNext()) {
+                    String type = line.next();
+                    if (GRAVITY_KEYWORD.equals(type)) {
+                        model.add(gravityCommand(line));
+                    }
+                    else if (VISCOSITY_KEYWORD.equals(type)) {
+                        model.add(viscosityCommand(line));
+                    }
+                    else if (CENTERMASS_KEYWORD.equals(type)) {
+                        model.add(centerMassCommand(line));
+                    }
+                    else if (WALL_KEYWORD.equals(type)) {
+                        model.add(wallCommand(line));
+                    }
+                }
+            }
+            input.close();
+        }
+        catch (FileNotFoundException e) {
+            // should not happen because File came from user selection
+            e.printStackTrace();
+        }
+    }
 
     // create mass from formatted data
     private Mass massCommand (Scanner line) {
@@ -56,7 +90,13 @@ public class Factory {
         double x = line.nextDouble();
         double y = line.nextDouble();
         double mass = line.nextDouble();
-        Mass result = new Mass(x, y, mass);
+        Mass result;
+        if(mass > 0) {
+        	result = new Mass(x, y, mass);
+        }
+        else {
+        	result = new FixedMass(x, y, mass);
+        }
         myMasses.put(id,  result);
         return result;
     }
@@ -68,5 +108,33 @@ public class Factory {
         double restLength = line.nextDouble();
         double ks = line.nextDouble();
         return new Spring(m1, m2, restLength, ks);
+    }
+    
+    //create gravity from formatted data
+    private Gravity gravityCommand (Scanner line) {
+    	double angle = line.nextDouble();
+    	double magnitude = line.nextDouble();
+    	return new Gravity(angle, magnitude);
+    }
+    
+  //create gravity from formatted data
+    private Viscosity viscosityCommand (Scanner line) {
+    	double scale = line.nextDouble();
+    	return new Viscosity(scale);
+    }
+    
+  //create gravity from formatted data
+    private CenterMass centerMassCommand (Scanner line) {
+    	double magnitude = line.nextDouble();
+    	double exponent = line.nextDouble();
+    	return new CenterMass(magnitude, exponent);
+    }
+    
+  //create gravity from formatted data
+    private Wall wallCommand (Scanner line) {
+    	int id = line.nextInt();
+    	double magnitude = line.nextDouble();
+    	double exponent = line.nextDouble();
+    	return new Wall(id, magnitude, exponent);
     }
 }

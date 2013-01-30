@@ -12,8 +12,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.io.FileNotFoundException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 import javax.swing.JComponent;
@@ -57,6 +59,7 @@ public class Canvas extends JComponent {
     private int myLastKeyPressed;
     private Point myLastMousePosition;
     private Set<Integer> myKeys;
+    Factory factory;
 
 
     /**
@@ -126,6 +129,7 @@ public class Canvas extends JComponent {
         // start animation
         mySimulation = new Model(this);
         loadModel();
+        loadEnvironment();
         myTimer.start();
     }
 
@@ -186,10 +190,17 @@ public class Canvas extends JComponent {
 
     // load model from file chosen by user
     private void loadModel () {
-        Factory factory = new Factory();
+        factory = new Factory();
         int response = INPUT_CHOOSER.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
             factory.loadModel(mySimulation, INPUT_CHOOSER.getSelectedFile());
+        }
+    }
+    
+    private void loadEnvironment () {
+        int response = INPUT_CHOOSER.showOpenDialog(null);
+        if (response == JFileChooser.APPROVE_OPTION) {
+            factory.loadEnvironment(mySimulation, INPUT_CHOOSER.getSelectedFile());
         }
     }
 }

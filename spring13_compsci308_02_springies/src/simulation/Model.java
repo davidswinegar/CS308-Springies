@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.List;
 import java.util.ArrayList;
+
+import util.GlobalForce;
 import view.Canvas;
 
 
@@ -18,6 +20,7 @@ public class Model {
     // simulation state
     private List<Mass> myMasses;
     private List<Spring> mySprings;
+    private List<GlobalForce> myGlobalForces;
 
     /**
      * Create a game of the given size with the given display for its shapes.
@@ -26,6 +29,7 @@ public class Model {
         myView = canvas;
         myMasses = new ArrayList<Mass>();
         mySprings = new ArrayList<Spring>();
+        myGlobalForces = new ArrayList<GlobalForce>();
     }
 
     /**
@@ -51,6 +55,9 @@ public class Model {
         for (Mass m : myMasses) {
             m.update(elapsedTime, bounds);
         }
+        for (GlobalForce f : myGlobalForces) {
+        	f.update(myMasses, bounds);
+        }
     }
 
     /**
@@ -65,5 +72,12 @@ public class Model {
      */
     public void add (Spring spring) {
         mySprings.add(spring);
+    }
+    
+    /**
+     * Add given force to this simulation.
+     */
+    public void add (GlobalForce force) {
+    	myGlobalForces.add(force);
     }
 }

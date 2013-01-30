@@ -1,0 +1,7 @@
+gravity 0 5
+viscosity 0 2
+centermass 3 1
+wall 1 2 1
+wall 2 2 1
+wall 3 2 1
+wall 4 2 1
