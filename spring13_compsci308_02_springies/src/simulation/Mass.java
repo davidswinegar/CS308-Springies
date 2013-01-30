@@ -10,8 +10,7 @@ import util.Vector;
 
 
 /**
- * TODO: fixedmass extends mass, changes applyforce method
- * XXX.
+ * Mass object which is acted upon by various forces in this physics simulator.
  * 
  * @author Robert C. Duvall
  */
@@ -24,7 +23,7 @@ public class Mass extends Sprite {
     private Vector myAcceleration;
 
     /**
-     * XXX.
+     * Constructs the Mass given its position and mass.
      */
     public Mass (double x, double y, double mass) {
         super(DEFUALT_IMAGE, new Location(x, y), DEFAULT_SIZE);
@@ -33,7 +32,7 @@ public class Mass extends Sprite {
     }
 
     /**
-     * XXX.
+     * Updates the mass to move according to forces and be redrawn.
      */
     @Override
     public void update (double elapsedTime, Dimension bounds) {
@@ -46,7 +45,7 @@ public class Mass extends Sprite {
     }
 
     /**
-     * XXX.
+     * Redraws mass.
      */
     @Override
     public void paint (Graphics2D pen) {

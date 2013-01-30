@@ -10,8 +10,7 @@ import util.Vector;
 
 
 /**
- * TODO: Muscle extends spring. change first few vector stuff to separate helper method and override that in Muscle for amplitude
- * XXX.
+ * Spring connects two masses and acts upon the masses based on Hooke's Law.
  * 
  * @author Robert C. Duvall
  */
@@ -26,7 +25,8 @@ public class Spring extends Sprite {
     private double myK;
 
     /**
-     * XXX.
+     * Constructs the spring, telling the spring which mass is the start and end point, how long the
+     * spring's rest length is, and the k-springiness constant of the spring.
      */
     public Spring (Mass start, Mass end, double length, double kVal) {
         super(DEFUALT_IMAGE, getCenter(start, end), getSize(start, end));
@@ -37,7 +37,7 @@ public class Spring extends Sprite {
     }
 
     /**
-     * XXX.
+     * Paints the spring on the canvas.
      */
     @Override
     public void paint (Graphics2D pen) {
@@ -46,7 +46,7 @@ public class Spring extends Sprite {
     }
 
     /**
-     * XXX.
+     * Updates the spring and applies force to the masses which it is connected to based on Hooke's Law.
      */
     @Override
     public void update (double elapsedTime, Dimension bounds) {
@@ -64,10 +64,21 @@ public class Spring extends Sprite {
         setVelocity(Vector.angleBetween(dx, dy), 0);
     }
     
+    /**
+     * Returns the length of the spring.
+     * 
+     * @param length
+     * @return
+     */
     public double getLength(double length) {
     	return myLength;
     }
     
+    /**
+     * Sets the length of the spring.
+     * 
+     * @param length
+     */
     public void setLength(double length){
     	myLength = length;
     }

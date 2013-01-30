@@ -10,7 +10,8 @@ import view.Canvas;
 
 
 /**
- * XXX.
+ * The model is responsible for containing all of the objects in the physics simulator and calls them
+ * to update themselves through each iteration cycle.
  * 
  * @author Robert C. Duvall
  */

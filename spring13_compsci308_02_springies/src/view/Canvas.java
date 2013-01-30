@@ -26,7 +26,6 @@ import simulation.Model;
 
 
 /**
- * TODO: choose second file for loadModel
  * Creates an area of the screen in which the game will be drawn that supports:
  * <UL>
  *   <LI>animation via the Timer
@@ -50,6 +49,7 @@ public class Canvas extends JComponent {
     // input state
     public static final int NO_KEY_PRESSED = -1;
     public static final Point NO_MOUSE_PRESSED = null;
+    public static final String ENVIRONMENT_NAME = "environment.xsp";
 
     // drives the animation
     private Timer myTimer;
@@ -197,9 +197,11 @@ public class Canvas extends JComponent {
         }
     }
     
+    //loads environment file chosen by user and checks for environment name match
     private void loadEnvironment () {
         int response = INPUT_CHOOSER.showOpenDialog(null);
-        if (response == JFileChooser.APPROVE_OPTION) {
+        String responseName = INPUT_CHOOSER.getSelectedFile().getName();
+        if (response == JFileChooser.APPROVE_OPTION && responseName.equals(ENVIRONMENT_NAME)) {
             factory.loadEnvironment(mySimulation, INPUT_CHOOSER.getSelectedFile());
         }
     }

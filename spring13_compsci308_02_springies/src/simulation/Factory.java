@@ -8,10 +8,7 @@ import java.util.Scanner;
 
 
 /**
- * TODO: add scanner stuff for new classes
- * TODO: add environment.xsp for environment stuff
- * TODO: use if statement to choose if file is environment.xsp
- * XXX
+ * The Factory class is responsible for interpreting the input files and constructing the appropriate objects.
  * 
  * @author Robert C. Duvall
  */
@@ -30,7 +27,7 @@ public class Factory {
 
 
     /**
-     * XXX.
+     * Loads the model based on the file input.
      */
     public void loadModel (Model model, File modelFile) {
         try {
@@ -58,6 +55,11 @@ public class Factory {
         }
     }
     
+    /**
+     * Loads environment based on the file input (environment.xsp).
+     * @param model
+     * @param modelFile
+     */
     public void loadEnvironment (Model model, File modelFile) {
         try {
             Scanner input = new Scanner(modelFile);
