@@ -251,7 +251,7 @@ public abstract class Sprite {
      */
     protected double getHitDirection (Rectangle bounds) {
         // double angle = Vector.angleBetween(myCenter, new Location(bounds.getCenterX(), bounds.getCenterY()));
-        // BUGBUG: FIX ME --- this is very imperfect, but sort of works for now
+    	
         if (bounds.contains(new Location(getLeft(), getY()))) {
             return RIGHT_DIRECTION;
         }
