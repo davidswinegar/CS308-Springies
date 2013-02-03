@@ -150,6 +150,11 @@ public class Factory {
     	int id = line.nextInt();
     	double magnitude = line.nextDouble();
     	double exponent = line.nextDouble();
-    	return new WallRepulsionForce(id, magnitude, exponent);
+    	WallRepulsionForce[] forces = {new TopWallRepulsionForce(id, magnitude, exponent),
+    			new RightWallRepulsionForce(id, magnitude, exponent),
+    			new BottomWallRepulsionForce(id, magnitude, exponent),
+    			new LeftWallRepulsionForce(id, magnitude, exponent)
+    	};
+    	return forces[id - 1];
     }
 }
