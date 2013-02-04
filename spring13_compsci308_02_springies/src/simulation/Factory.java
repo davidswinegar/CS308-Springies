@@ -8,7 +8,8 @@ import java.util.Scanner;
 
 
 /**
- * The Factory class is responsible for interpreting the input files and constructing the appropriate objects.
+ * The Factory class is responsible for interpreting the input files and constructing the
+ * appropriate objects.
  * 
  * @author Robert C. Duvall
  */
@@ -23,8 +24,7 @@ public class Factory {
     private static final String WALL_KEYWORD = "wall";
 
     // mass IDs
-    Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
-
+    private Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
 
     /**
      * Loads the model based on the file input.
@@ -54,9 +54,10 @@ public class Factory {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Loads environment based on the file input (environment.xsp).
+     * 
      * @param model
      * @param modelFile
      */
@@ -96,13 +97,13 @@ public class Factory {
         double y = line.nextDouble();
         double mass = line.nextDouble();
         Mass result;
-        if(mass > 0) {
-        	result = new Mass(x, y, mass);
+        if (mass > 0) {
+            result = new Mass(x, y, mass);
         }
         else {
-        	result = new FixedMass(x, y, mass);
+            result = new FixedMass(x, y, mass);
         }
-        myMasses.put(id,  result);
+        myMasses.put(id, result);
         return result;
     }
 
@@ -114,7 +115,7 @@ public class Factory {
         double ks = line.nextDouble();
         return new Spring(m1, m2, restLength, ks);
     }
-    
+
     // create muscle from formatted data
     private Muscle muscleCommand (Scanner line) {
         Mass m1 = myMasses.get(line.nextInt());
@@ -124,37 +125,37 @@ public class Factory {
         double amplitude = line.nextDouble();
         return new Muscle(m1, m2, restLength, ks, amplitude);
     }
-    
-    //create gravity from formatted data
+
+    // create gravity from formatted data
     private Gravity gravityCommand (Scanner line) {
-    	double angle = line.nextDouble();
-    	double magnitude = line.nextDouble();
-    	return new Gravity(angle, magnitude);
+        double angle = line.nextDouble();
+        double magnitude = line.nextDouble();
+        return new Gravity(angle, magnitude);
     }
-    
-  //create gravity from formatted data
+
+    // create gravity from formatted data
     private ViscosityForce viscosityCommand (Scanner line) {
-    	double scale = line.nextDouble();
-    	return new ViscosityForce(scale);
+        double scale = line.nextDouble();
+        return new ViscosityForce(scale);
     }
-    
-  //create gravity from formatted data
+
+    // create gravity from formatted data
     private CenterOfMassForce centerMassCommand (Scanner line) {
-    	double magnitude = line.nextDouble();
-    	double exponent = line.nextDouble();
-    	return new CenterOfMassForce(magnitude, exponent);
+        double magnitude = line.nextDouble();
+        double exponent = line.nextDouble();
+        return new CenterOfMassForce(magnitude, exponent);
     }
-    
-  //create gravity from formatted data
+
+    // create gravity from formatted data
     private WallRepulsionForce wallCommand (Scanner line) {
-    	int id = line.nextInt();
-    	double magnitude = line.nextDouble();
-    	double exponent = line.nextDouble();
-    	WallRepulsionForce[] forces = {new TopWallRepulsionForce(id, magnitude, exponent),
-    			new RightWallRepulsionForce(id, magnitude, exponent),
-    			new BottomWallRepulsionForce(id, magnitude, exponent),
-    			new LeftWallRepulsionForce(id, magnitude, exponent)
-    	};
-    	return forces[id - 1];
+        int id = line.nextInt();
+        double magnitude = line.nextDouble();
+        double exponent = line.nextDouble();
+        WallRepulsionForce[] forces = { new TopWallRepulsionForce(id, magnitude, exponent),
+                                       new RightWallRepulsionForce(id, magnitude, exponent),
+                                       new BottomWallRepulsionForce(id, magnitude, exponent),
+                                       new LeftWallRepulsionForce(id, magnitude, exponent)
+        };
+        return forces[id - 1];
     }
 }

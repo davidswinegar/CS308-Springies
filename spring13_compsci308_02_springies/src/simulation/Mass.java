@@ -14,7 +14,7 @@ import util.Vector;
  * 
  * @author Robert C. Duvall
  */
-public class Mass extends Sprite {    
+public class Mass extends Sprite {
     // reasonable default values
     public static final Dimension DEFAULT_SIZE = new Dimension(16, 16);
     public static final Pixmap DEFUALT_IMAGE = new Pixmap("mass.gif");
@@ -50,7 +50,7 @@ public class Mass extends Sprite {
     @Override
     public void paint (Graphics2D pen) {
         pen.setColor(Color.BLACK);
-        pen.fillOval((int)getLeft(), (int)getTop(), (int)getWidth(), (int)getHeight());
+        pen.fillOval((int) getLeft(), (int) getTop(), (int) getWidth(), (int) getHeight());
     }
 
     /**
@@ -67,7 +67,6 @@ public class Mass extends Sprite {
         // this is a little awkward, so hide it
         return new Location(getX(), getY()).distance(new Location(other.getX(), other.getY()));
     }
-
 
     // check for move out of bounds
     private Vector getBounce (Dimension bounds) {

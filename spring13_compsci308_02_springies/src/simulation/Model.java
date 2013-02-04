@@ -2,15 +2,15 @@ package simulation;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.util.List;
 import java.util.ArrayList;
-
+import java.util.List;
 import util.GlobalForce;
 import view.Canvas;
 
 
 /**
- * The model is responsible for containing all of the objects in the physics simulator and calls them
+ * The model is responsible for containing all of the objects in the physics simulator and calls
+ * them
  * to update themselves through each iteration cycle.
  * 
  * @author Robert C. Duvall
@@ -57,7 +57,7 @@ public class Model {
             m.update(elapsedTime, bounds);
         }
         for (GlobalForce f : myGlobalForces) {
-        	f.update(myMasses, bounds);
+            f.update(myMasses, bounds);
         }
     }
 
@@ -74,11 +74,11 @@ public class Model {
     public void add (Spring spring) {
         mySprings.add(spring);
     }
-    
+
     /**
      * Add given force to this simulation.
      */
     public void add (GlobalForce force) {
-    	myGlobalForces.add(force);
+        myGlobalForces.add(force);
     }
 }
