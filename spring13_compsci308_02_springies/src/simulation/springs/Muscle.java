@@ -1,6 +1,7 @@
-package simulation;
+package simulation.springs;
 
 import java.awt.Dimension;
+import simulation.masses.Mass;
 import view.Canvas;
 
 

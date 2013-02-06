@@ -1,8 +1,8 @@
-package util;
+package simulation.forces;
 
 import java.awt.Dimension;
 import java.util.List;
-import simulation.Mass;
+import simulation.masses.Mass;
 
 
 public abstract class GlobalForce {

@@ -5,6 +5,18 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import simulation.forces.CenterOfMassForce;
+import simulation.forces.Gravity;
+import simulation.forces.ViscosityForce;
+import simulation.forces.wallrepulsionforces.BottomWallRepulsionForce;
+import simulation.forces.wallrepulsionforces.LeftWallRepulsionForce;
+import simulation.forces.wallrepulsionforces.RightWallRepulsionForce;
+import simulation.forces.wallrepulsionforces.TopWallRepulsionForce;
+import simulation.forces.wallrepulsionforces.WallRepulsionForce;
+import simulation.masses.FixedMass;
+import simulation.masses.Mass;
+import simulation.springs.Muscle;
+import simulation.springs.Spring;
 
 
 /**

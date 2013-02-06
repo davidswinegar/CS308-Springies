@@ -4,7 +4,9 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
-import util.GlobalForce;
+import simulation.forces.GlobalForce;
+import simulation.masses.Mass;
+import simulation.springs.Spring;
 import view.Canvas;
 
 

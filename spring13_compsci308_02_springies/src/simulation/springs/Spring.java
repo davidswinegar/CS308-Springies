@@ -1,8 +1,9 @@
-package simulation;
+package simulation.springs;
 
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import simulation.masses.Mass;
 import util.Location;
 import util.Pixmap;
 import util.Sprite;
