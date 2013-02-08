@@ -2,6 +2,11 @@ package simulation.masses;
 
 import simulation.forces.Force;
 
+/**
+ * A mass which does not move/respond to forces acting upon it.
+ * @author David Le
+ *
+ */
 public class FixedMass extends Mass {
 
     public FixedMass (double x, double y, double mass) {

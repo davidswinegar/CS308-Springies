@@ -4,7 +4,12 @@ import java.awt.Dimension;
 import simulation.masses.Mass;
 import view.Canvas;
 
-
+/**
+ * Connector between two masses which not only acts like a spring but also oscillates based on amplitude
+ * input in the environment.
+ * @author David Le
+ *
+ */
 public class Muscle extends Spring {
 
     public static final int OSCILLATION_TIME = 5 * Canvas.FRAMES_PER_SECOND;
@@ -19,6 +24,9 @@ public class Muscle extends Spring {
         myInitialLength = length;
     }
 
+    /**
+     * Applies for on the two ends of the muscle as well as updates length to provide oscillation.
+     */
     @Override
     public void update (double elapsedTime, Dimension bounds) {
         myCounter++;
