@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import simulation.masses.Mass;
+import simulation.forces.Force;
 import util.Location;
 import util.Pixmap;
 import util.Sprite;
@@ -56,7 +57,7 @@ public class Spring extends Sprite {
         double dx = myStart.getX() - myEnd.getX();
         double dy = myStart.getY() - myEnd.getY();
         // apply hooke's law to each attached mass
-        Vector force = new Vector(Vector.angleBetween(dx, dy),
+        Force force = new Force(Vector.angleBetween(dx, dy),
                                   myK * (myLength - Vector.distanceBetween(dx, dy)));
         myStart.applyForce(force);
         force.negate();

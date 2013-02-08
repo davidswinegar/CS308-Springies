@@ -1,7 +1,8 @@
-package simulation.forces;
+package simulation.forces.globalforces;
 
 import java.awt.Dimension;
 import java.util.List;
+import simulation.forces.Force;
 import simulation.masses.Mass;
 import util.Vector;
 
@@ -30,10 +31,10 @@ public class ViscosityForce extends GlobalForce {
     @Override
     public void update (List<Mass> massList, Dimension bounds) {
         for (Mass m : massList) {
-            Vector v = new Vector(m.getVelocity());
-            v.negate();
-            v.scale(myScale);
-            m.applyForce(v);
+            Force f = (Force) new Vector(m.getVelocity());
+            f.negate();
+            f.scale(myScale);
+            m.applyForce(f);
         }
     }
 

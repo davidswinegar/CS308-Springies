@@ -1,7 +1,8 @@
-package simulation.forces;
+package simulation.forces.globalforces;
 
 import java.awt.Dimension;
 import java.util.List;
+import simulation.forces.Force;
 import simulation.masses.Mass;
 import util.Vector;
 
@@ -50,7 +51,7 @@ public class CenterOfMassForce extends GlobalForce {
             double magnitude =
                     myMagnitude /
                             Math.pow(Vector.distanceBetween(m.getX() - x, m.getY() - y), myExponent);
-            m.applyForce(new Vector(angle, magnitude));
+            m.applyForce(new Force(angle, magnitude));
         }
     }
 

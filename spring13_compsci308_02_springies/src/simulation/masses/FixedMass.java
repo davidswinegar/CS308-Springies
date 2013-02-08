@@ -1,7 +1,6 @@
 package simulation.masses;
 
-import util.Vector;
-
+import simulation.forces.Force;
 
 public class FixedMass extends Mass {
 
@@ -13,7 +12,7 @@ public class FixedMass extends Mass {
      * Because it is a fixed mass, applyForce should not do anything.
      */
     @Override
-    public void applyForce (Vector force) {
+    public void applyForce (Force force) {
     }
 
 }

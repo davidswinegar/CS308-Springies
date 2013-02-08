@@ -7,6 +7,7 @@ import util.Location;
 import util.Pixmap;
 import util.Vector;
 import util.Sprite;
+import simulation.forces.Force;
 
 
 /**
@@ -56,7 +57,7 @@ public class Mass extends Sprite {
     /**
      * Use the given force to change this mass's acceleration.
      */
-    public void applyForce (Vector force) {
+    public void applyForce (Force force) {
         myAcceleration.sum(force);
     }
 
@@ -69,20 +70,20 @@ public class Mass extends Sprite {
     }
 
     // check for move out of bounds
-    private Vector getBounce (Dimension bounds) {
+    private Force getBounce (Dimension bounds) {
         final double IMPULSE_MAGNITUDE = 2;
-        Vector impulse = new Vector();
+        Force impulse = new Force();
         if (getLeft() < 0) {
-            impulse = new Vector(RIGHT_DIRECTION, IMPULSE_MAGNITUDE);
+            impulse = new Force(RIGHT_DIRECTION, IMPULSE_MAGNITUDE);
         }
         else if (getRight() > bounds.width) {
-            impulse = new Vector(LEFT_DIRECTION, IMPULSE_MAGNITUDE);
+            impulse = new Force(LEFT_DIRECTION, IMPULSE_MAGNITUDE);
         }
         if (getTop() < 0) {
-            impulse = new Vector(DOWN_DIRECTION, IMPULSE_MAGNITUDE);
+            impulse = new Force(DOWN_DIRECTION, IMPULSE_MAGNITUDE);
         }
         else if (getBottom() > bounds.height) {
-            impulse = new Vector(UP_DIRECTION, IMPULSE_MAGNITUDE);
+            impulse = new Force(UP_DIRECTION, IMPULSE_MAGNITUDE);
         }
         impulse.scale(getVelocity().getRelativeMagnitude(impulse));
         return impulse;

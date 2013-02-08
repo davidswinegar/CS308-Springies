@@ -1,4 +1,4 @@
-package simulation.forces.wallrepulsionforces;
+package simulation.forces.globalforces.wallrepulsionforces;
 
 import java.awt.Dimension;
 import simulation.masses.Mass;

@@ -1,11 +1,10 @@
-package simulation.forces.wallrepulsionforces;
+package simulation.forces.globalforces.wallrepulsionforces;
 
 import java.awt.Dimension;
 import java.util.List;
-import simulation.forces.GlobalForce;
+import simulation.forces.Force;
+import simulation.forces.globalforces.GlobalForce;
 import simulation.masses.Mass;
-import util.Vector;
-
 
 /**
  * Calculates the wall repulsion vector for one wall and applies to all masses.
@@ -38,7 +37,7 @@ public abstract class WallRepulsionForce extends GlobalForce {
         for (Mass m : massList) {
             // magnitude = magnitude / (distance^exponent), because physics
             double magnitude = myMagnitude / Math.pow(getDistance(m, bounds), myExponent);
-            m.applyForce(new Vector(myDirection, magnitude));
+            m.applyForce(new Force(myDirection, magnitude));
         }
 
     }
