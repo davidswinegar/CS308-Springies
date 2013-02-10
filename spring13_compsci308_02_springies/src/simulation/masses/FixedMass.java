@@ -1,6 +1,6 @@
 package simulation.masses;
 
-import simulation.forces.Force;
+import util.Vector;
 
 /**
  * A mass which does not move/respond to forces acting upon it.
@@ -17,7 +17,7 @@ public class FixedMass extends Mass {
      * Because it is a fixed mass, applyForce should not do anything.
      */
     @Override
-    public void applyForce (Force force) {
+    public void applyForce (Vector force) {
     }
 
 }

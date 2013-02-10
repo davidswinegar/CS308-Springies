@@ -1,10 +1,8 @@
-package simulation.forces.globalforces;
+package simulation.globalforces;
 
 import java.awt.Dimension;
 import java.util.List;
-import simulation.forces.Force;
 import simulation.masses.Mass;
-import util.Vector;
 
 
 /**
@@ -13,7 +11,7 @@ import util.Vector;
  * @author David Winegar
  * 
  */
-public class ViscosityForce extends GlobalForce {
+public class ViscosityForce implements GlobalForce {
 
     // scale current vector by amount
     private double myScale;
@@ -31,10 +29,7 @@ public class ViscosityForce extends GlobalForce {
     @Override
     public void update (List<Mass> massList, Dimension bounds) {
         for (Mass m : massList) {
-            Force f = (Force) new Vector(m.getVelocity());
-            f.negate();
-            f.scale(myScale);
-            m.applyForce(f);
+            m.scaleAcceleration(myScale);
         }
     }
 

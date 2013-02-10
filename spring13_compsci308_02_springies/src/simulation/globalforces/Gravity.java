@@ -1,9 +1,9 @@
-package simulation.forces.globalforces;
+package simulation.globalforces;
 
 import java.awt.Dimension;
 import java.util.List;
-import simulation.forces.Force;
 import simulation.masses.Mass;
+import util.Vector;
 
 /**
  * Global force which pushes in a constant direction and magnitude specified by environment input.
@@ -12,12 +12,12 @@ import simulation.masses.Mass;
  *
  */
 
-public class Gravity extends GlobalForce {
+public class Gravity implements GlobalForce {
     // Gravity vector
-    Force myGravityForce;
+    Vector myGravityForce;
 
     public Gravity (double direction, double magnitude) {
-        myGravityForce = new Force(direction, magnitude);
+        myGravityForce = new Vector(direction, magnitude);
     }
 
     /**
