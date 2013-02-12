@@ -15,10 +15,10 @@ public class NewAssemblyListener implements Listener {
     // TODO 
     @Override
     public void takeAction () {
-        Factory factory = new Factory();
+        Factory factory = new Factory(myModel);
         int response = Canvas.INPUT_CHOOSER.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
-            factory.loadModel(myModel, Canvas.INPUT_CHOOSER.getSelectedFile());
+            factory.loadModel(Canvas.INPUT_CHOOSER.getSelectedFile());
         }
     }
 

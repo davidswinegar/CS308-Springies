@@ -35,7 +35,7 @@ public class ViscosityForce extends GlobalForce {
      */
     @Override
     public void update (Assembly assembly, Dimension bounds) {
-        super.update(assembly, bounds);
+        if (!isToggledOn()) assembly = new Assembly();
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             m.scaleAcceleration(myScale);

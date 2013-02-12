@@ -199,10 +199,10 @@ public class Canvas extends JComponent {
 
     // load model from file chosen by user
     private void loadModel () {
-        myFactory = new Factory();
+        myFactory = new Factory(mySimulation);
         int response = INPUT_CHOOSER.showOpenDialog(null);
         if (response == JFileChooser.APPROVE_OPTION) {
-            myFactory.loadModel(mySimulation, INPUT_CHOOSER.getSelectedFile());
+            myFactory.loadModel(INPUT_CHOOSER.getSelectedFile());
         }
     }
 
@@ -211,7 +211,7 @@ public class Canvas extends JComponent {
         int response = INPUT_CHOOSER.showOpenDialog(null);
         String responseName = INPUT_CHOOSER.getSelectedFile().getName();
         if (response == JFileChooser.APPROVE_OPTION && responseName.equals(ENVIRONMENT_NAME)) {
-            myFactory.loadEnvironment(mySimulation, INPUT_CHOOSER.getSelectedFile());
+            myFactory.loadEnvironment(INPUT_CHOOSER.getSelectedFile());
         }
     }
 }

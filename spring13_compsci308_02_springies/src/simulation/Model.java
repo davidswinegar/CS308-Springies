@@ -88,6 +88,13 @@ public class Model {
     }
     
     /**
+     * Add given listener to this simulation.
+     */
+    public void add (int key, Listener listener) {
+        myListenerMap.put(key, listener);
+    }
+    
+    /**
      * Removes all assemblies from the simulation.
      */
     public void clearAllAssemblies () {

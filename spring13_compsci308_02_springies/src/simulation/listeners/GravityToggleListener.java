@@ -2,9 +2,9 @@ package simulation.listeners;
 
 import simulation.globalforces.Gravity;
 
-public class GravityToggleListener {
+public class GravityToggleListener implements Listener {
 
-    Gravity myGravity;
+    private Gravity myGravity;
     
     public GravityToggleListener (Gravity gravity) {
         myGravity = gravity;

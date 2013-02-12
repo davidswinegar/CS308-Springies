@@ -1,5 +1,6 @@
 package simulation;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -13,6 +14,9 @@ import simulation.globalforces.wallrepulsionforces.LeftWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.RightWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.TopWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.WallRepulsionForce;
+import simulation.listeners.CenterOfMassToggleListener;
+import simulation.listeners.GravityToggleListener;
+import simulation.listeners.ViscosityToggleListener;
 import simulation.masses.FixedMass;
 import simulation.masses.Mass;
 import simulation.springs.Muscle;
@@ -40,10 +44,16 @@ public class Factory {
     // mass IDs
     private Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
 
+    private Model mySimulation;
     /**
      * Creates an assembly based on file input and passes it to the model.
      */
-    public void loadModel (Model model, File modelFile) {
+    
+    public Factory (Model model) {
+        mySimulation = model;
+    }
+    
+    public void loadModel (File modelFile) {
         Assembly currentAssembly = new Assembly();
         try {
             Scanner input = new Scanner(modelFile);
@@ -52,13 +62,13 @@ public class Factory {
                 if (line.hasNext()) {
                     String type = line.next();
                     if (MASS_KEYWORD.equals(type)) {
-                        currentAssembly.add(massCommand(line));
+                        currentAssembly.add(addMass(line));
                     }
                     else if (SPRING_KEYWORD.equals(type)) {
-                        currentAssembly.add(springCommand(line));
+                        currentAssembly.add(addSpring(line));
                     }
                     else if (MUSCLE_KEYWORD.equals(type)) {
-                        currentAssembly.add(muscleCommand(line));
+                        currentAssembly.add(addMuscle(line));
                     }
                 }
             }
@@ -68,7 +78,7 @@ public class Factory {
             // should not happen because File came from user selection
             e.printStackTrace();
         }
-        model.add(currentAssembly);
+        mySimulation.add(currentAssembly);
     }
 
     /**
@@ -77,7 +87,7 @@ public class Factory {
      * @param model
      * @param modelFile
      */
-    public void loadEnvironment (Model model, File modelFile) {
+    public void loadEnvironment (File modelFile) {
         try {
             Scanner input = new Scanner(modelFile);
             while (input.hasNext()) {
@@ -85,16 +95,16 @@ public class Factory {
                 if (line.hasNext()) {
                     String type = line.next();
                     if (GRAVITY_KEYWORD.equals(type)) {
-                        model.add(gravityCommand(line));
+                        mySimulation.add(addGravity(line));
                     }
                     else if (VISCOSITY_KEYWORD.equals(type)) {
-                        model.add(viscosityCommand(line));
+                        mySimulation.add(addViscosity(line));
                     }
                     else if (CENTERMASS_KEYWORD.equals(type)) {
-                        model.add(centerMassCommand(line));
+                        mySimulation.add(addCenterMass(line));
                     }
                     else if (WALL_KEYWORD.equals(type)) {
-                        model.add(wallCommand(line));
+                        mySimulation.add(addWall(line));
                     }
                 }
             }
@@ -104,10 +114,11 @@ public class Factory {
             // should not happen because File came from user selection
             e.printStackTrace();
         }
+        
     }
 
     // create mass from formatted data
-    private Mass massCommand (Scanner line) {
+    private Mass addMass (Scanner line) {
         int id = line.nextInt();
         double x = line.nextDouble();
         double y = line.nextDouble();
@@ -124,7 +135,7 @@ public class Factory {
     }
 
     // create spring from formatted data
-    private Spring springCommand (Scanner line) {
+    private Spring addSpring (Scanner line) {
         Mass m1 = myMasses.get(line.nextInt());
         Mass m2 = myMasses.get(line.nextInt());
         double restLength = line.nextDouble();
@@ -133,7 +144,7 @@ public class Factory {
     }
 
     // create muscle from formatted data
-    private Muscle muscleCommand (Scanner line) {
+    private Muscle addMuscle (Scanner line) {
         Mass m1 = myMasses.get(line.nextInt());
         Mass m2 = myMasses.get(line.nextInt());
         double restLength = line.nextDouble();
@@ -143,27 +154,33 @@ public class Factory {
     }
 
     // create gravity from formatted data
-    private Gravity gravityCommand (Scanner line) {
+    private Gravity addGravity (Scanner line) {
         double angle = line.nextDouble();
         double magnitude = line.nextDouble();
-        return new Gravity(angle, magnitude);
+        Gravity gravity = new Gravity(angle, magnitude);
+        mySimulation.add(KeyEvent.VK_G, new GravityToggleListener(gravity));
+        return gravity;
     }
 
     // create gravity from formatted data
-    private ViscosityForce viscosityCommand (Scanner line) {
+    private ViscosityForce addViscosity (Scanner line) {
         double scale = line.nextDouble();
-        return new ViscosityForce(scale);
+        ViscosityForce viscosity = new ViscosityForce(scale);
+        mySimulation.add(KeyEvent.VK_V, new ViscosityToggleListener(viscosity));
+        return viscosity;
     }
 
     // create gravity from formatted data
-    private CenterOfMassForce centerMassCommand (Scanner line) {
+    private CenterOfMassForce addCenterMass (Scanner line) {
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
-        return new CenterOfMassForce(magnitude, exponent);
+        CenterOfMassForce centerOfMass = new CenterOfMassForce(magnitude, exponent);
+        mySimulation.add(KeyEvent.VK_M, new CenterOfMassToggleListener(centerOfMass));
+        return centerOfMass;
     }
 
     // create gravity from formatted data
-    private WallRepulsionForce wallCommand (Scanner line) {
+    private WallRepulsionForce addWall (Scanner line) {
         int id = line.nextInt();
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();

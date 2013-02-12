@@ -14,5 +14,5 @@ public class IncreaseBorderListener implements Listener {
     public void takeAction () {
         myModel.changeBoundsSize(AMOUNT_TO_INCREASE);
     }
-
+    
 }
