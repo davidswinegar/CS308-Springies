@@ -24,6 +24,8 @@ import simulation.springs.Spring;
  * appropriate objects.
  * 
  * @author Robert C. Duvall
+ * @author David Winegar
+ * @author David Le
  */
 public class Factory {
     // data file keywords

@@ -3,8 +3,11 @@ package simulation;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import simulation.globalforces.GlobalForce;
+import simulation.listeners.Listener;
 import view.Canvas;
 
 
@@ -23,6 +26,8 @@ public class Model {
     // simulation state
     private List<GlobalForce> myGlobalForces;
     private List<Assembly> myAssemblies;
+    private Map<Integer, Listener> myListenerMap;
+    private Dimension myBounds;
 
     /**
      * Create a game of the given size with the given display for its shapes.
@@ -31,6 +36,8 @@ public class Model {
         myView = canvas;
         myGlobalForces = new ArrayList<GlobalForce>();
         myAssemblies = new ArrayList<Assembly>();
+        myListenerMap = new HashMap<Integer, Listener>();
+        myBounds = myView.getSize();
     }
 
     /**
@@ -46,13 +53,16 @@ public class Model {
      * Update simulation for this moment, given the time since the last moment.
      */
     public void update (double elapsedTime) {
-        Dimension bounds = myView.getSize();
         for (Assembly a : myAssemblies) { 
             for (GlobalForce f : myGlobalForces) {
-                f.update(a, bounds);
+                f.update(a, myBounds);
             }
-            a.update(elapsedTime, bounds);
+            a.update(elapsedTime, myBounds);
         }
+    }
+    
+    public void changeBoundsSize (int amount) {
+        myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
     }
 
     /**
@@ -72,14 +82,22 @@ public class Model {
     /**
      * Removes all assemblies from the simulation.
      */
-    public void removeAllAssemblies () {
+    public void clearAllAssemblies () {
         myAssemblies = new ArrayList<Assembly>();
     }
     
     public void getLastKeyAndCallListener () {
         int keyPressed = myView.getLastKeyPressed();
-        if (keyPressed != myView.NO_KEY_PRESSED) { 
-            
+        if (myListenerMap.containsKey(keyPressed)) { 
+            myListenerMap.get(keyPressed).takeAction();
         }
+    }
+    
+    public void addAllListeners () {
+        
+    }
+    
+    public void getMouseAndCallListener (Map<Integer, Listener> listenerMap) {
+        myListenerMap = listenerMap;
     }
 }

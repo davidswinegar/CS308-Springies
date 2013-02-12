@@ -44,7 +44,7 @@ public class Canvas extends JComponent {
     public static final int ONE_SECOND = 1000;
     public static final int DEFAULT_DELAY = ONE_SECOND / FRAMES_PER_SECOND;
     // only one so that it maintains user's preferences
-    private static final JFileChooser INPUT_CHOOSER =
+    public static final JFileChooser INPUT_CHOOSER =
             new JFileChooser(System.getProperties().getProperty("user.dir"));
     // input state
     public static final int NO_KEY_PRESSED = -1;
