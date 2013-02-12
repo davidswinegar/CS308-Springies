@@ -13,7 +13,7 @@ import util.Vector;
  * @author David Winegar
  * 
  */
-public class CenterOfMassForce implements GlobalForce {
+public class CenterOfMassForce extends GlobalForce {
 
     private static final int DEFAULT_EXPONENT = -1;
     private static final double DEFAULT_MAGNITUDE = .5;
@@ -23,6 +23,7 @@ public class CenterOfMassForce implements GlobalForce {
 
     public CenterOfMassForce () {
         this(DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
+        toggle();
     }                      
                               
     /**
@@ -39,6 +40,7 @@ public class CenterOfMassForce implements GlobalForce {
      */
     @Override
     public void update (Assembly assembly, Dimension bounds) {
+        super.update(assembly, bounds);
         List<Mass> massList = assembly.getMassList();
         double x = 0;
         double y = 0;

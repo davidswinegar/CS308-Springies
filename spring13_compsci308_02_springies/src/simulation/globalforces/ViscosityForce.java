@@ -12,7 +12,7 @@ import simulation.masses.Mass;
  * @author David Winegar
  * 
  */
-public class ViscosityForce implements GlobalForce {
+public class ViscosityForce extends GlobalForce {
 
     private static final double DEFAULT_SCALE = .5;
     // scale current vector by amount
@@ -20,6 +20,7 @@ public class ViscosityForce implements GlobalForce {
 
     public ViscosityForce () {
         this(DEFAULT_SCALE);
+        toggle();
     }
     
     /**
@@ -34,6 +35,7 @@ public class ViscosityForce implements GlobalForce {
      */
     @Override
     public void update (Assembly assembly, Dimension bounds) {
+        super.update(assembly, bounds);
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             m.scaleAcceleration(myScale);

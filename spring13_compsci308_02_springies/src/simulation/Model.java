@@ -5,8 +5,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 import simulation.globalforces.GlobalForce;
-import simulation.masses.Mass;
-import simulation.springs.Spring;
 import view.Canvas;
 
 
@@ -32,6 +30,7 @@ public class Model {
     public Model (Canvas canvas) {
         myView = canvas;
         myGlobalForces = new ArrayList<GlobalForce>();
+        myAssemblies = new ArrayList<Assembly>();
     }
 
     /**
@@ -68,5 +67,19 @@ public class Model {
      */
     public void add (Assembly assembly) {
         myAssemblies.add(assembly);
+    }
+    
+    /**
+     * Removes all assemblies from the simulation.
+     */
+    public void removeAllAssemblies () {
+        myAssemblies = new ArrayList<Assembly>();
+    }
+    
+    public void getLastKeyAndCallListener () {
+        int keyPressed = myView.getLastKeyPressed();
+        if (keyPressed != myView.NO_KEY_PRESSED) { 
+            
+        }
     }
 }

@@ -13,7 +13,7 @@ import util.Vector;
  * @author David Winegar
  * 
  */
-public abstract class WallRepulsionForce implements GlobalForce {
+public abstract class WallRepulsionForce extends GlobalForce {
 
     private static final int DEFAULT_EXPONENT = -1;
     private static final double DEFAULT_MAGNITUDE = .5;
@@ -25,6 +25,7 @@ public abstract class WallRepulsionForce implements GlobalForce {
 
     public WallRepulsionForce (double wallID) {
         this(wallID, DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
+        toggle();
     }
     
     /**
@@ -42,6 +43,7 @@ public abstract class WallRepulsionForce implements GlobalForce {
      */
     @Override
     public void update (Assembly assembly, Dimension bounds) {
+        super.update(assembly, bounds);
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             // magnitude = magnitude / (distance^exponent), because physics

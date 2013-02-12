@@ -32,6 +32,8 @@ import simulation.Model;
  * </UL>
  * 
  * @author Robert C Duvall
+ * @author David Winegar
+ * @author David Le
  */
 public class Canvas extends JComponent {
     // default serialization ID
@@ -157,13 +159,17 @@ public class Canvas extends JComponent {
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed (KeyEvent e) {
-                myLastKeyPressed = e.getKeyCode();
+                // resets key after being used once. Does not affect getKeysPressed.
+                if(myLastKeyPressed == e.getKeyCode()){
+                    myLastKeyPressed = NO_KEY_PRESSED;
+                } else {
+                    myLastKeyPressed = e.getKeyCode();
+                }
                 myKeys.add(e.getKeyCode());
             }
 
             @Override
             public void keyReleased (KeyEvent e) {
-                myLastKeyPressed = NO_KEY_PRESSED;
                 myKeys.remove(e.getKeyCode());
             }
         });

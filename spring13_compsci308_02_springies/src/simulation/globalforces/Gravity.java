@@ -14,7 +14,7 @@ import util.Vector;
  *
  */
 
-public class Gravity implements GlobalForce {
+public class Gravity extends GlobalForce {
     private static final int DEFAULT_MAGNITUDE = -10;
     // Gravity vector
     Vector myGravityForce;
@@ -22,6 +22,7 @@ public class Gravity implements GlobalForce {
     
     public Gravity () {
         this(Sprite.DOWN_DIRECTION, DEFAULT_MAGNITUDE);
+        toggle();
     }
     
     public Gravity (double direction, double magnitude) {
@@ -33,6 +34,7 @@ public class Gravity implements GlobalForce {
      */
     @Override
     public void update (Assembly assembly, Dimension bounds) {
+        super.update(assembly, bounds);
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             m.applyForce(myGravityForce);

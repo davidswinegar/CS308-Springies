@@ -9,8 +9,21 @@ import simulation.Assembly;
  * @author David Le & David Winegar
  *
  */
-public interface GlobalForce {
+public abstract class GlobalForce {
+    
+    private boolean isCurrentlyOn = true;
 
-    public abstract void update (Assembly assembly, Dimension bounds);
+    public void update (Assembly assembly, Dimension bounds){
+        if (!isCurrentlyOn) {
+            assembly = new Assembly();
+        }
+    }
 
+    public void toggle () {
+        isCurrentlyOn = !isCurrentlyOn;
+    }
+    
+    public boolean isToggledOn () {
+        return isCurrentlyOn;
+    }
 }
