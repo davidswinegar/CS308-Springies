@@ -41,9 +41,10 @@ public class Factory {
     private Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
 
     /**
-     * Loads the model based on the file input.
+     * Creates an assembly based on file input and passes it to the model.
      */
     public void loadModel (Model model, File modelFile) {
+        Assembly currentAssembly = new Assembly();
         try {
             Scanner input = new Scanner(modelFile);
             while (input.hasNext()) {
@@ -51,13 +52,13 @@ public class Factory {
                 if (line.hasNext()) {
                     String type = line.next();
                     if (MASS_KEYWORD.equals(type)) {
-                        model.add(massCommand(line));
+                        currentAssembly.add(massCommand(line));
                     }
                     else if (SPRING_KEYWORD.equals(type)) {
-                        model.add(springCommand(line));
+                        currentAssembly.add(springCommand(line));
                     }
                     else if (MUSCLE_KEYWORD.equals(type)) {
-                        model.add(muscleCommand(line));
+                        currentAssembly.add(muscleCommand(line));
                     }
                 }
             }
@@ -67,6 +68,7 @@ public class Factory {
             // should not happen because File came from user selection
             e.printStackTrace();
         }
+        model.add(currentAssembly);
     }
 
     /**
