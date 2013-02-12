@@ -2,6 +2,7 @@ package simulation.globalforces.wallrepulsionforces;
 
 import java.awt.Dimension;
 import simulation.masses.Mass;
+import util.Sprite;
 
 
 /**
@@ -12,6 +13,10 @@ import simulation.masses.Mass;
  */
 public class TopWallRepulsionForce extends WallRepulsionForce {
 
+    public TopWallRepulsionForce () {
+        super(Sprite.DOWN_DIRECTION);
+    }
+    
     /**
      * Sends info to superconstructor.
      */

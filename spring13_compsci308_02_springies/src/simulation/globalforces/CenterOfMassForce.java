@@ -14,10 +14,16 @@ import util.Vector;
  */
 public class CenterOfMassForce implements GlobalForce {
 
+    private static final int DEFAULT_EXPONENT = -1;
+    private static final double DEFAULT_MAGNITUDE = .5;
     // state used to determine force vector
     private double myMagnitude;
     private double myExponent;
 
+    public CenterOfMassForce () {
+        this(DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
+    }                      
+                              
     /**
      * Sets state.
      */

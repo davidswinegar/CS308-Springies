@@ -13,9 +13,14 @@ import simulation.masses.Mass;
  */
 public class ViscosityForce implements GlobalForce {
 
+    private static final double DEFAULT_SCALE = .5;
     // scale current vector by amount
     private double myScale;
 
+    public ViscosityForce () {
+        this(DEFAULT_SCALE);
+    }
+    
     /**
      * Sets state.
      */

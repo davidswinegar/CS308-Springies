@@ -14,11 +14,18 @@ import util.Vector;
  */
 public abstract class WallRepulsionForce implements GlobalForce {
 
+    private static final int DEFAULT_EXPONENT = -1;
+    private static final double DEFAULT_MAGNITUDE = .5;
+    
     // state used to determine force vector
     private double myDirection;
     private double myMagnitude;
     private double myExponent;
 
+    public WallRepulsionForce (double wallID) {
+        this(wallID, DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
+    }
+    
     /**
      * Sets state used to determine force vector.
      */

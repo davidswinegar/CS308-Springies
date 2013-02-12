@@ -3,6 +3,7 @@ package simulation.globalforces;
 import java.awt.Dimension;
 import java.util.List;
 import simulation.masses.Mass;
+import util.Sprite;
 import util.Vector;
 
 /**
@@ -13,9 +14,15 @@ import util.Vector;
  */
 
 public class Gravity implements GlobalForce {
+    private static final int DEFAULT_MAGNITUDE = -10;
     // Gravity vector
     Vector myGravityForce;
-
+    
+    
+    public Gravity () {
+        this(Sprite.DOWN_DIRECTION, DEFAULT_MAGNITUDE);
+    }
+    
     public Gravity (double direction, double magnitude) {
         myGravityForce = new Vector(direction, magnitude);
     }
