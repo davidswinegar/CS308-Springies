@@ -2,12 +2,18 @@ package simulation;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import simulation.globalforces.GlobalForce;
+import simulation.listeners.ClearAssemblyListener;
+import simulation.listeners.DecreaseBorderListener;
+import simulation.listeners.GravityToggleListener;
+import simulation.listeners.IncreaseBorderListener;
 import simulation.listeners.Listener;
+import simulation.listeners.NewAssemblyListener;
 import view.Canvas;
 
 
@@ -38,6 +44,7 @@ public class Model {
         myAssemblies = new ArrayList<Assembly>();
         myListenerMap = new HashMap<Integer, Listener>();
         myBounds = myView.getSize();
+        addAllListeners();
     }
 
     /**
@@ -53,6 +60,7 @@ public class Model {
      * Update simulation for this moment, given the time since the last moment.
      */
     public void update (double elapsedTime) {
+        getLastKeyAndCallListener();
         for (Assembly a : myAssemblies) { 
             for (GlobalForce f : myGlobalForces) {
                 f.update(a, myBounds);
@@ -94,7 +102,10 @@ public class Model {
     }
     
     public void addAllListeners () {
-        
+        myListenerMap.put(KeyEvent.VK_UP, new IncreaseBorderListener(this));
+        myListenerMap.put(KeyEvent.VK_DOWN, new DecreaseBorderListener(this));
+        myListenerMap.put(KeyEvent.VK_N, new NewAssemblyListener(this));
+        myListenerMap.put(KeyEvent.VK_C, new ClearAssemblyListener(this));
     }
     
     public void getMouseAndCallListener (Map<Integer, Listener> listenerMap) {

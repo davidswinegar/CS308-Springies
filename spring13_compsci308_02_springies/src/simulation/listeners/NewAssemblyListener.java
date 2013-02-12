@@ -9,6 +9,9 @@ public class NewAssemblyListener implements Listener {
 
     private Model myModel;
     
+    public NewAssemblyListener(Model model) {
+        myModel = model;
+    }
     // TODO 
     @Override
     public void takeAction () {

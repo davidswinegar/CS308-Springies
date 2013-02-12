@@ -7,8 +7,11 @@ public class GravityToggleListener {
     Gravity myGravity;
     
     public GravityToggleListener (Gravity gravity) {
-        // TODO Auto-generated constructor stub
-        
+        myGravity = gravity;
+    }
+    
+    public void takeAction () {
+        myGravity.toggle();
     }
 
 }

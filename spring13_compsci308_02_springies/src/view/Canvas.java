@@ -97,7 +97,9 @@ public class Canvas extends JComponent {
      * Returns last key pressed by the user or -1 if nothing is pressed.
      */
     public int getLastKeyPressed () {
-        return myLastKeyPressed;
+        int keyPressed = myLastKeyPressed;
+        myLastKeyPressed = NO_KEY_PRESSED;
+        return keyPressed;
     }
 
     /**
@@ -158,19 +160,21 @@ public class Canvas extends JComponent {
         myKeys = new TreeSet<Integer>();
         addKeyListener(new KeyAdapter() {
             @Override
+            //testing a key release method. this one is slightly bugged for me but works slightly better. -David Le
             public void keyPressed (KeyEvent e) {
                 // resets key after being used once. Does not affect getKeysPressed.
-                if(myLastKeyPressed == e.getKeyCode()){
+           /*     if(myLastKeyPressed == e.getKeyCode()){
                     myLastKeyPressed = NO_KEY_PRESSED;
                 } else {
                     myLastKeyPressed = e.getKeyCode();
                 }
-                myKeys.add(e.getKeyCode());
+                myKeys.add(e.getKeyCode());*/
             }
 
             @Override
             public void keyReleased (KeyEvent e) {
-                myKeys.remove(e.getKeyCode());
+                //myKeys.remove(e.getKeyCode());
+                myLastKeyPressed = e.getKeyCode();
             }
         });
         myLastMousePosition = NO_MOUSE_PRESSED;
