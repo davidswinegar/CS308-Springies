@@ -16,22 +16,21 @@ import view.Canvas;
  * to update themselves through each iteration cycle.
  * 
  * @author Robert C. Duvall
+ * @author David Winegar
+ * @Author David Le
  */
 public class Model {
     // bounds and input for game
     private Canvas myView;
     // simulation state
-    private List<Mass> myMasses;
-    private List<Spring> mySprings;
     private List<GlobalForce> myGlobalForces;
+    private List<Assembly> myAssemblies;
 
     /**
      * Create a game of the given size with the given display for its shapes.
      */
     public Model (Canvas canvas) {
         myView = canvas;
-        myMasses = new ArrayList<Mass>();
-        mySprings = new ArrayList<Spring>();
         myGlobalForces = new ArrayList<GlobalForce>();
     }
 
@@ -39,11 +38,8 @@ public class Model {
      * Draw all elements of the simulation.
      */
     public void paint (Graphics2D pen) {
-        for (Spring s : mySprings) {
-            s.paint(pen);
-        }
-        for (Mass m : myMasses) {
-            m.paint(pen);
+        for (Assembly a : myAssemblies) { 
+            a.paint(pen);
         }
     }
 
@@ -52,29 +48,12 @@ public class Model {
      */
     public void update (double elapsedTime) {
         Dimension bounds = myView.getSize();
-        for (GlobalForce f : myGlobalForces) {
-            f.update(myMasses, bounds);
+        for (Assembly a : myAssemblies) { 
+            for (GlobalForce f : myGlobalForces) {
+                f.update(a, bounds);
+            }
+            a.update(elapsedTime, bounds);
         }
-        for (Spring s : mySprings) {
-            s.update(elapsedTime, bounds);
-        }
-        for (Mass m : myMasses) {
-            m.update(elapsedTime, bounds);
-        }
-    }
-
-    /**
-     * Add given mass to this simulation.
-     */
-    public void add (Mass mass) {
-        myMasses.add(mass);
-    }
-
-    /**
-     * Add given spring to this simulation.
-     */
-    public void add (Spring spring) {
-        mySprings.add(spring);
     }
 
     /**
@@ -82,5 +61,12 @@ public class Model {
      */
     public void add (GlobalForce force) {
         myGlobalForces.add(force);
+    }
+    
+    /**
+     * Add given assembly to this simulation.
+     */
+    public void add (Assembly assembly) {
+        myAssemblies.add(assembly);
     }
 }

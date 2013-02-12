@@ -2,6 +2,7 @@ package simulation.globalforces;
 
 import java.awt.Dimension;
 import java.util.List;
+import simulation.Assembly;
 import simulation.masses.Mass;
 import util.Vector;
 
@@ -37,7 +38,8 @@ public class CenterOfMassForce implements GlobalForce {
      * each mass.
      */
     @Override
-    public void update (List<Mass> massList, Dimension bounds) {
+    public void update (Assembly assembly, Dimension bounds) {
+        List<Mass> massList = assembly.getMassList();
         double x = 0;
         double y = 0;
 

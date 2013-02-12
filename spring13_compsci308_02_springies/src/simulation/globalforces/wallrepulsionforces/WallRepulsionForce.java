@@ -2,6 +2,7 @@ package simulation.globalforces.wallrepulsionforces;
 
 import java.awt.Dimension;
 import java.util.List;
+import simulation.Assembly;
 import simulation.globalforces.GlobalForce;
 import simulation.masses.Mass;
 import util.Vector;
@@ -40,7 +41,8 @@ public abstract class WallRepulsionForce implements GlobalForce {
      * Calculates force vector for each mass and applies it.
      */
     @Override
-    public void update (List<Mass> massList, Dimension bounds) {
+    public void update (Assembly assembly, Dimension bounds) {
+        List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             // magnitude = magnitude / (distance^exponent), because physics
             double magnitude = myMagnitude / Math.pow(getDistance(m, bounds), myExponent);

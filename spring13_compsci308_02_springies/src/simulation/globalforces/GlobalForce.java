@@ -1,8 +1,7 @@
 package simulation.globalforces;
 
 import java.awt.Dimension;
-import java.util.List;
-import simulation.masses.Mass;
+import simulation.Assembly;
 
 /**
  * Global forces which are created depending on the environment input.
@@ -12,6 +11,6 @@ import simulation.masses.Mass;
  */
 public interface GlobalForce {
 
-    public abstract void update (List<Mass> massList, Dimension bounds);
+    public abstract void update (Assembly assembly, Dimension bounds);
 
 }

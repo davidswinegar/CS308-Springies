@@ -2,6 +2,7 @@ package simulation.globalforces;
 
 import java.awt.Dimension;
 import java.util.List;
+import simulation.Assembly;
 import simulation.masses.Mass;
 import util.Sprite;
 import util.Vector;
@@ -31,7 +32,8 @@ public class Gravity implements GlobalForce {
      * Iterates through each mass in the simulator and applies a constant force.
      */
     @Override
-    public void update (List<Mass> massList, Dimension bounds) {
+    public void update (Assembly assembly, Dimension bounds) {
+        List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             m.applyForce(myGravityForce);
         }
