@@ -21,7 +21,7 @@ public class LeftWallRepulsionForce extends WallRepulsionForce {
     }
 
     /**
-     * Calculates distance between mass and top wall.
+     * Calculates distance between mass and left wall.
      */
     @Override
     public double getDistance (Mass mass, Dimension bounds) {

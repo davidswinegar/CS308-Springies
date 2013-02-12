@@ -43,7 +43,7 @@ public abstract class WallRepulsionForce implements GlobalForce {
     }
 
     /**
-     * Finds distance between wall and mass. To be overriden for each wall.
+     * Finds distance between wall and mass.
      */
     public abstract double getDistance (Mass mass, Dimension bounds);
 

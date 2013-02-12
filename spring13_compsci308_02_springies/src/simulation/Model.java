@@ -52,14 +52,14 @@ public class Model {
      */
     public void update (double elapsedTime) {
         Dimension bounds = myView.getSize();
+        for (GlobalForce f : myGlobalForces) {
+            f.update(myMasses, bounds);
+        }
         for (Spring s : mySprings) {
             s.update(elapsedTime, bounds);
         }
         for (Mass m : myMasses) {
             m.update(elapsedTime, bounds);
-        }
-        for (GlobalForce f : myGlobalForces) {
-            f.update(myMasses, bounds);
         }
     }
 
