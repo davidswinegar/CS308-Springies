@@ -10,7 +10,6 @@ import java.util.Map;
 import simulation.globalforces.GlobalForce;
 import simulation.listeners.ClearAssemblyListener;
 import simulation.listeners.DecreaseBorderListener;
-import simulation.listeners.GravityToggleListener;
 import simulation.listeners.IncreaseBorderListener;
 import simulation.listeners.Listener;
 import simulation.listeners.NewAssemblyListener;
@@ -62,10 +61,11 @@ public class Model {
     public void update (double elapsedTime) {
         getLastKeyAndCallListener();
         for (Assembly a : myAssemblies) { 
+            a.updateSprings(elapsedTime, myBounds);
             for (GlobalForce f : myGlobalForces) {
-                f.update(a, myBounds);
+                f.applyForceIfToggledOn(a, myBounds);
             }
-            a.update(elapsedTime, myBounds);
+            a.updateMasses(elapsedTime, myBounds);
         }
     }
     

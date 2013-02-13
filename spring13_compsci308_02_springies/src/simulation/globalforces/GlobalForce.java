@@ -13,10 +13,14 @@ public abstract class GlobalForce {
     
     private boolean isCurrentlyOn = true;
 
-    public void update (Assembly assembly, Dimension bounds){
-        if (!isCurrentlyOn) {
-            assembly = new Assembly();
+    public void applyForceIfToggledOn (Assembly assembly, Dimension bounds) {
+        if(isToggledOn()) {
+            applyForce(assembly,bounds);
         }
+    }
+    
+    public void applyForce (Assembly assembly, Dimension bounds){
+        
     }
 
     public void toggle () {

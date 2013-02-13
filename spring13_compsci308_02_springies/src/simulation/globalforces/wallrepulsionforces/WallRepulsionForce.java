@@ -42,8 +42,7 @@ public abstract class WallRepulsionForce extends GlobalForce {
      * Calculates force vector for each mass and applies it.
      */
     @Override
-    public void update (Assembly assembly, Dimension bounds) {
-        super.update(assembly, bounds);
+    public void applyForce (Assembly assembly, Dimension bounds) {
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             // magnitude = magnitude / (distance^exponent), because physics

@@ -39,8 +39,7 @@ public class CenterOfMassForce extends GlobalForce {
      * each mass.
      */
     @Override
-    public void update (Assembly assembly, Dimension bounds) {
-        if (!isToggledOn()) assembly = new Assembly();
+    public void applyForce (Assembly assembly, Dimension bounds) {
         List<Mass> massList = assembly.getMassList();
         double x = 0;
         double y = 0;

@@ -33,8 +33,7 @@ public class Gravity extends GlobalForce {
      * Iterates through each mass in the simulator and applies a constant force.
      */
     @Override
-    public void update (Assembly assembly, Dimension bounds) {
-        if (!isToggledOn()) assembly = new Assembly();
+    public void applyForce (Assembly assembly, Dimension bounds) {
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             m.applyForce(myGravityForce);

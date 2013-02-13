@@ -14,9 +14,7 @@ import simulation.globalforces.wallrepulsionforces.LeftWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.RightWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.TopWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.WallRepulsionForce;
-import simulation.listeners.CenterOfMassToggleListener;
-import simulation.listeners.GravityToggleListener;
-import simulation.listeners.ViscosityToggleListener;
+import simulation.listeners.GlobalForceListener;
 import simulation.masses.FixedMass;
 import simulation.masses.Mass;
 import simulation.springs.Muscle;
@@ -158,7 +156,7 @@ public class Factory {
         double angle = line.nextDouble();
         double magnitude = line.nextDouble();
         Gravity gravity = new Gravity(angle, magnitude);
-        mySimulation.add(KeyEvent.VK_G, new GravityToggleListener(gravity));
+        mySimulation.add(KeyEvent.VK_G, new GlobalForceListener(gravity));
         return gravity;
     }
 
@@ -166,7 +164,7 @@ public class Factory {
     private ViscosityForce addViscosity (Scanner line) {
         double scale = line.nextDouble();
         ViscosityForce viscosity = new ViscosityForce(scale);
-        mySimulation.add(KeyEvent.VK_V, new ViscosityToggleListener(viscosity));
+        mySimulation.add(KeyEvent.VK_V, new GlobalForceListener(viscosity));
         return viscosity;
     }
 
@@ -175,7 +173,7 @@ public class Factory {
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
         CenterOfMassForce centerOfMass = new CenterOfMassForce(magnitude, exponent);
-        mySimulation.add(KeyEvent.VK_M, new CenterOfMassToggleListener(centerOfMass));
+        mySimulation.add(KeyEvent.VK_M, new GlobalForceListener(centerOfMass));
         return centerOfMass;
     }
 

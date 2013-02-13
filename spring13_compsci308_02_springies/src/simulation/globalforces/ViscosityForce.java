@@ -34,8 +34,7 @@ public class ViscosityForce extends GlobalForce {
      * Gets current vector, scales and reverses it, and applies it.
      */
     @Override
-    public void update (Assembly assembly, Dimension bounds) {
-        if (!isToggledOn()) assembly = new Assembly();
+    public void applyForce (Assembly assembly, Dimension bounds) {
         List<Mass> massList = assembly.getMassList();
         for (Mass m : massList) {
             m.scaleAcceleration(myScale);

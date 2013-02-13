@@ -30,12 +30,18 @@ public class Assembly {
     }
     
     /**
-     * Update assembly for this moment, given the time since the last moment.
+     * Update springs for this moment, given the time since the last moment.
      */
-    public void update (double elapsedTime, Dimension bounds) {
+    public void updateSprings (double elapsedTime, Dimension bounds) {
         for (Spring s : mySprings) {
             s.update(elapsedTime, bounds);
         }
+    }
+    
+    /**
+     * Update masses for this moment, given the time since the last moment.
+     */
+    public void updateMasses (double elapsedTime, Dimension bounds) {
         for (Mass m : myMasses) {
             m.update(elapsedTime, bounds);
         }
