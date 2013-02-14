@@ -3,9 +3,12 @@ package simulation;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.List;
+import simulation.globalforces.GlobalForce;
 import simulation.globalforces.CenterOfMassForce;
 import simulation.globalforces.Gravity;
 import simulation.globalforces.ViscosityForce;
@@ -51,7 +54,7 @@ public class Factory {
         mySimulation = model;
     }
     
-    public void loadModel (File modelFile) {
+    public void loadAssembly (File modelFile) {
         Assembly currentAssembly = new Assembly();
         try {
             Scanner input = new Scanner(modelFile);
@@ -113,6 +116,25 @@ public class Factory {
             e.printStackTrace();
         }
         
+    }
+    
+    public List<GlobalForce> initializeGlobalForces () {
+        List<GlobalForce> forces = new ArrayList<GlobalForce>();
+        CenterOfMassForce centerOfMass = new CenterOfMassForce();
+        mySimulation.add(KeyEvent.VK_M, new GlobalForceListener(centerOfMass));
+        Gravity gravity = new Gravity();
+        mySimulation.add(KeyEvent.VK_G, new GlobalForceListener(gravity));
+        WallRepulsionForce topWallForce = new TopWallRepulsionForce();
+        mySimulation.add(KeyEvent.VK_1, new GlobalForceListener(topWallForce));
+        WallRepulsionForce rightWallForce = new RightWallRepulsionForce();
+        mySimulation.add(KeyEvent.VK_2, new GlobalForceListener(rightWallForce));
+        WallRepulsionForce bottomWallForce = new BottomWallRepulsionForce();
+        mySimulation.add(KeyEvent.VK_3, new GlobalForceListener(bottomWallForce));
+        WallRepulsionForce leftWallForce = new LeftWallRepulsionForce();
+        mySimulation.add(KeyEvent.VK_4, new GlobalForceListener(leftWallForce));
+        ViscosityForce viscosity = new ViscosityForce();
+        mySimulation.add(KeyEvent.VK_V, new GlobalForceListener(viscosity));
+        return forces;
     }
 
     // create mass from formatted data
@@ -182,10 +204,10 @@ public class Factory {
         int id = line.nextInt();
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
-        WallRepulsionForce[] forces = { new TopWallRepulsionForce(id, magnitude, exponent),
-                                       new RightWallRepulsionForce(id, magnitude, exponent),
-                                       new BottomWallRepulsionForce(id, magnitude, exponent),
-                                       new LeftWallRepulsionForce(id, magnitude, exponent)
+        WallRepulsionForce[] forces = { new TopWallRepulsionForce(magnitude, exponent),
+                                       new RightWallRepulsionForce(magnitude, exponent),
+                                       new BottomWallRepulsionForce(magnitude, exponent),
+                                       new LeftWallRepulsionForce(magnitude, exponent)
         };
         int[] keys = { KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
         WallRepulsionForce wallForce = forces[id - 1];

@@ -20,9 +20,9 @@ public class LeftWallRepulsionForce extends WallRepulsionForce {
     /**
      * Sends info to superconstructor.
      */
-    public LeftWallRepulsionForce (double wallID, double magnitude,
+    public LeftWallRepulsionForce (double magnitude,
                                    double exponent) {
-        super(wallID, magnitude, exponent);
+        super(Sprite.RIGHT_DIRECTION, magnitude, exponent);
     }
 
     /**

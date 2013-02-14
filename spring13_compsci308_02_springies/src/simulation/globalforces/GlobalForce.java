@@ -22,7 +22,7 @@ public abstract class GlobalForce {
     }
     
     public abstract void applyForce (Assembly assembly, Dimension bounds);
-
+    
     public void toggle () {
         isCurrentlyOn = !isCurrentlyOn;
     }

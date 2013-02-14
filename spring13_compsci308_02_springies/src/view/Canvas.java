@@ -212,15 +212,15 @@ public class Canvas extends JComponent {
     // load model from file chosen by user
     private void loadModel () {
         myFactory = new Factory(mySimulation);
-        int response = INPUT_CHOOSER.showOpenDialog(null);
+        int response = INPUT_CHOOSER.showDialog(null, "Assembly file");
         if (response == JFileChooser.APPROVE_OPTION) {
-            myFactory.loadModel(INPUT_CHOOSER.getSelectedFile());
+            myFactory.loadAssembly(INPUT_CHOOSER.getSelectedFile());
         }
     }
 
     // loads environment file chosen by user and checks for environment name match
     private void loadEnvironment () {
-        int response = INPUT_CHOOSER.showOpenDialog(null);
+        int response = INPUT_CHOOSER.showDialog(null, "Environment file");
         String responseName = INPUT_CHOOSER.getSelectedFile().getName();
         if (response == JFileChooser.APPROVE_OPTION && responseName.equals(ENVIRONMENT_NAME)) {
             myFactory.loadEnvironment(INPUT_CHOOSER.getSelectedFile());

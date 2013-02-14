@@ -23,19 +23,18 @@ public abstract class WallRepulsionForce extends GlobalForce {
     private double myMagnitude;
     private double myExponent;
 
-    public WallRepulsionForce (double wallID) {
-        this(wallID, DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
+    public WallRepulsionForce (double angle) {
+        this(angle, DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
         toggle();
     }
     
     /**
      * Sets state used to determine force vector.
      */
-    public WallRepulsionForce (double wallID, double magnitude, double exponent) {
+    public WallRepulsionForce (double angle, double magnitude, double exponent) {
         myMagnitude = magnitude;
         myExponent = exponent;
-        // converts wallID to angle
-        myDirection = wallID * 90;
+        myDirection = angle;
     }
 
     /**

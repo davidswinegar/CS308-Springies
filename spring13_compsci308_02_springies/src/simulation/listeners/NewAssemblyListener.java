@@ -16,9 +16,9 @@ public class NewAssemblyListener implements Listener {
     @Override
     public void takeAction () {
         Factory factory = new Factory(myModel);
-        int response = Canvas.INPUT_CHOOSER.showOpenDialog(null);
+        int response = Canvas.INPUT_CHOOSER.showDialog(null, "Assembly file");
         if (response == JFileChooser.APPROVE_OPTION) {
-            factory.loadModel(Canvas.INPUT_CHOOSER.getSelectedFile());
+            factory.loadAssembly(Canvas.INPUT_CHOOSER.getSelectedFile());
         }
     }
 

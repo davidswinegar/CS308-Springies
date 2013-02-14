@@ -12,7 +12,7 @@ import util.Sprite;
  * 
  */
 public class TopWallRepulsionForce extends WallRepulsionForce {
-
+    
     public TopWallRepulsionForce () {
         super(Sprite.DOWN_DIRECTION);
     }
@@ -20,9 +20,9 @@ public class TopWallRepulsionForce extends WallRepulsionForce {
     /**
      * Sends info to superconstructor.
      */
-    public TopWallRepulsionForce (double wallID, double magnitude,
+    public TopWallRepulsionForce (double magnitude,
                                   double exponent) {
-        super(wallID, magnitude, exponent);
+        super(Sprite.DOWN_DIRECTION, magnitude, exponent);
     }
 
     /**

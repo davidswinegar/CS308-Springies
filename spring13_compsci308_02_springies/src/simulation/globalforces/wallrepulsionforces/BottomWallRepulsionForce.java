@@ -20,9 +20,9 @@ public class BottomWallRepulsionForce extends WallRepulsionForce {
     /**
      * Sends info to superconstructor.
      */
-    public BottomWallRepulsionForce (double wallID, double magnitude,
+    public BottomWallRepulsionForce (double magnitude,
                                      double exponent) {
-        super(wallID, magnitude, exponent);
+        super(Sprite.UP_DIRECTION, magnitude, exponent);
     }
 
     /**
