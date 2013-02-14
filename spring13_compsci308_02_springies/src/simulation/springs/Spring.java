@@ -66,6 +66,10 @@ public class Spring extends Sprite {
         setSize(getSize(myStart, myEnd));
         setVelocity(Vector.angleBetween(dx, dy), 0);
     }
+    
+    public Mass getEnd() {
+        return myEnd;
+    }
 
     /**
      * Returns the length of the spring.

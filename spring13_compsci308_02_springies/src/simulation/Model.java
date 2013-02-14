@@ -2,6 +2,7 @@ package simulation;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +14,8 @@ import simulation.listeners.DecreaseBorderListener;
 import simulation.listeners.IncreaseBorderListener;
 import simulation.listeners.Listener;
 import simulation.listeners.NewAssemblyListener;
+import simulation.masses.Mass;
+import simulation.springs.UserSpring;
 import view.Canvas;
 
 
@@ -26,6 +29,8 @@ import view.Canvas;
  * @Author David Le
  */
 public class Model {
+    public static final int MAX_DISTANCE = 9999;
+    
     // bounds and input for game
     private Canvas myView;
     // simulation state
@@ -33,6 +38,7 @@ public class Model {
     private List<Assembly> myAssemblies;
     private Map<Integer, Listener> myListenerMap;
     private Dimension myBounds;
+    private UserSpring myUserSpring;
 
     /**
      * Create a game of the given size with the given display for its shapes.
@@ -60,6 +66,13 @@ public class Model {
      */
     public void update (double elapsedTime) {
         getLastKeyAndCallListener();
+        if (myView.getMouseClick()) {
+            updateUserSpring();
+        }
+        else if (myUserSpring != null) {
+            myUserSpring.getAssembly().removeUserSpring();
+            myUserSpring = null;
+        }
         for (Assembly a : myAssemblies) { 
             a.updateSprings(elapsedTime, myBounds);
             for (GlobalForce f : myGlobalForces) {
@@ -73,6 +86,30 @@ public class Model {
         myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
     }
 
+    private void updateUserSpring() {
+        Point mousePosition = myView.getLastMousePosition();
+        if(myUserSpring == null) {
+            double minDistance = MAX_DISTANCE;
+            Assembly targetAssembly = null;
+            Mass targetMass = null;
+            for (Assembly a : myAssemblies) {
+                for(Mass m : a.getMassList()){
+                    double distance = mousePosition.distance(m.getX(), m.getY());
+                    if(distance < minDistance){
+                        minDistance = distance;
+                        targetAssembly = a;
+                        targetMass = m;
+                    }
+                }
+            }
+            myUserSpring = new UserSpring(targetMass, mousePosition, targetAssembly);
+            targetAssembly.add(myUserSpring);
+        }
+        else {
+            myUserSpring.getEnd().setCenter(mousePosition.getX(), mousePosition.getY());
+        }
+    }
+    
     /**
      * Add given force to this simulation.
      */

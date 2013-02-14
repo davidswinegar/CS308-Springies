@@ -58,6 +58,7 @@ public class Canvas extends JComponent {
     // input state
     private int myLastKeyPressed;
     private Point myLastMousePosition;
+    private boolean myMouseClick;
     private Set<Integer> myKeys;
     private Factory myFactory;
 
@@ -114,6 +115,15 @@ public class Canvas extends JComponent {
      */
     public Point getLastMousePosition () {
         return myLastMousePosition;
+    }
+    
+    /**
+     * Returns true if mouse is currently held down.
+     * 
+     * @return
+     */
+    public boolean getMouseClick () {
+        return myMouseClick;
     }
 
     /**
@@ -188,11 +198,13 @@ public class Canvas extends JComponent {
             @Override
             public void mousePressed (MouseEvent e) {
                 myLastMousePosition = e.getPoint();
+                myMouseClick = true;
             }
 
             @Override
             public void mouseReleased (MouseEvent e) {
                 myLastMousePosition = NO_MOUSE_PRESSED;
+                myMouseClick = false;
             }
         });
     }

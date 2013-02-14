@@ -1,5 +1,6 @@
 package simulation.masses;
 
+import java.awt.Point;
 import util.Vector;
 
 /**
@@ -20,4 +21,5 @@ public class FixedMass extends Mass {
     public void applyForce (Vector force) {
     }
 
+    
 }

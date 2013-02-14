@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import simulation.masses.Mass;
 import simulation.springs.Spring;
+import simulation.springs.UserSpring;
 
 public class Assembly {
 
     private List<Mass> myMasses;
     private List<Spring> mySprings;
+    private UserSpring myUserSpring;
     
     public Assembly () {
         myMasses = new ArrayList<Mass>();
@@ -61,8 +63,20 @@ public class Assembly {
         mySprings.add(spring);
     }
     
+    public void add (UserSpring uspring) {
+        myUserSpring = uspring;
+        mySprings.add(uspring);
+    }
+    
     public List<Mass> getMassList () {
         return myMasses;
+    }
+    
+    public void removeUserSpring() {
+        if(myUserSpring != null) {
+            mySprings.remove(myUserSpring);
+            myUserSpring = null;
+        }
     }
     
 }
