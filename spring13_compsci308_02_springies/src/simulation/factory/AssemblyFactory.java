@@ -28,15 +28,18 @@ public class AssemblyFactory extends Factory {
     // mass IDs
     private Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
 
-    Assembly myAssembly;
+    Assembly myAssembly = new Assembly();
 
     /**
      * Creates an assembly based on file input and passes it to the model.
      */
     public AssemblyFactory (Model model) {
         super(model);
-        myAssembly = new Assembly();
-        model.add(myAssembly);
+    }
+    
+    @Override
+    protected void initializeReadFile () {
+        getModel().add(myAssembly);
     }
 
     @Override

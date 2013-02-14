@@ -19,6 +19,7 @@ public abstract class Factory {
     }
 
     public void loadFile (File modelFile) {
+        
         try {
             Scanner input = new Scanner(modelFile);
             while (input.hasNext()) {
@@ -37,4 +38,6 @@ public abstract class Factory {
     }
 
     protected abstract void processInput (Scanner line, String type);
+    
+    protected abstract void initializeReadFile ();
 }

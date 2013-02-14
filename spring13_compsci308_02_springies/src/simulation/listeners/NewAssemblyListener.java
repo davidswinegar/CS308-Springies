@@ -15,7 +15,6 @@ public class NewAssemblyListener implements Listener {
         myModel = model;
     }
 
-    // TODO
     @Override
     public void takeAction () {
         Factory factory = new AssemblyFactory(myModel);

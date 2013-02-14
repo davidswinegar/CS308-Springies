@@ -2,7 +2,9 @@ package simulation.factory;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import simulation.Model;
 import simulation.globalforces.CenterOfMassForce;
@@ -15,6 +17,7 @@ import simulation.globalforces.wallrepulsionforces.RightWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.TopWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.WallRepulsionForce;
 import simulation.listeners.GlobalForceListener;
+import simulation.masses.Mass;
 
 
 /**
@@ -31,6 +34,8 @@ public class ForceFactory extends Factory {
     private static final String VISCOSITY_KEYWORD = "viscosity";
     private static final String CENTERMASS_KEYWORD = "centermass";
     private static final String WALL_KEYWORD = "wall";
+    
+    private Map<Integer, GlobalForce> myGlobalForces = new HashMap<Integer, GlobalForce>();
 
     /**
      * Creates an assembly based on file input and passes it to the model.
@@ -41,7 +46,6 @@ public class ForceFactory extends Factory {
 
     @Override
     protected void processInput (Scanner line, String type) {
-        // TODO Auto-generated method stub
         if (GRAVITY_KEYWORD.equals(type)) {
             getModel().add(addGravity(line));
         }
@@ -55,8 +59,14 @@ public class ForceFactory extends Factory {
             getModel().add(addWall(line));
         }
     }
+    
+    @Override
+    protected void initializeReadFile () {
+        getModel().clearAllAssemblies();
+        initializeGlobalForces();
+    }
 
-    public List<GlobalForce> initializeGlobalForces () {
+    public void initializeGlobalForces () {
         Model model = getModel();
         List<GlobalForce> forces = new ArrayList<GlobalForce>();
         CenterOfMassForce centerOfMass = new CenterOfMassForce();
@@ -73,7 +83,6 @@ public class ForceFactory extends Factory {
         model.add(KeyEvent.VK_4, new GlobalForceListener(leftWallForce));
         ViscosityForce viscosity = new ViscosityForce();
         model.add(KeyEvent.VK_V, new GlobalForceListener(viscosity));
-        return forces;
     }
 
     // create gravity from formatted data
@@ -112,11 +121,20 @@ public class ForceFactory extends Factory {
                                        new BottomWallRepulsionForce(magnitude, exponent),
                                        new LeftWallRepulsionForce(magnitude, exponent)
         };
+        try{
+            
+        } catch(IndexOutOfBoundsException e){
+            // TODO make catch nicer
+            e.printStackTrace();
+            System.out.println("malformed data file");
+        }
         int[] keys = { KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
         WallRepulsionForce wallForce = forces[id - 1];
         int key = keys[id - 1];
         getModel().add(key, new GlobalForceListener(wallForce));
         return wallForce;
     }
+
+    
 
 }
