@@ -117,7 +117,7 @@ public class Canvas extends JComponent {
     public Point getLastMousePosition () {
         return myLastMousePosition;
     }
-    
+
     /**
      * Returns true if mouse is currently held down.
      * 
@@ -173,9 +173,10 @@ public class Canvas extends JComponent {
             @Override
             public void keyPressed (KeyEvent e) {
                 // resets key after being used once. Does not affect getKeysPressed.
-                if(myLastKeyPressed == e.getKeyCode()){
+                if (myLastKeyPressed == e.getKeyCode()) {
                     myLastKeyPressed = NO_KEY_PRESSED;
-                } else {
+                }
+                else {
                     myLastKeyPressed = e.getKeyCode();
                 }
                 myKeys.add(e.getKeyCode());

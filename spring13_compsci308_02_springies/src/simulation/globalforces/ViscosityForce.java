@@ -22,7 +22,7 @@ public class ViscosityForce extends GlobalForce {
         this(DEFAULT_SCALE);
         toggle();
     }
-    
+
     /**
      * Sets state.
      */

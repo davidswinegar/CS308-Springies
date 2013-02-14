@@ -27,9 +27,9 @@ public class AssemblyFactory extends Factory {
 
     // mass IDs
     private Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
-    
+
     Assembly myAssembly;
-    
+
     /**
      * Creates an assembly based on file input and passes it to the model.
      */
@@ -38,7 +38,7 @@ public class AssemblyFactory extends Factory {
         myAssembly = new Assembly();
         model.add(myAssembly);
     }
-    
+
     @Override
     protected void processInput (Scanner line, String type) {
         if (MASS_KEYWORD.equals(type)) {
@@ -88,5 +88,4 @@ public class AssemblyFactory extends Factory {
         return new Muscle(m1, m2, restLength, ks, amplitude);
     }
 
-    
 }

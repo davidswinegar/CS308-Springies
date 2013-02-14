@@ -7,24 +7,24 @@ import simulation.masses.Mass;
 import util.Sprite;
 import util.Vector;
 
+
 /**
  * Global force which pushes in a constant direction and magnitude specified by environment input.
  * 
  * @author David Le & David Winegar
- *
+ * 
  */
 
 public class Gravity extends GlobalForce {
     private static final int DEFAULT_MAGNITUDE = -10;
     // Gravity vector
     private Vector myGravityForce;
-    
-    
+
     public Gravity () {
         this(Sprite.DOWN_DIRECTION, DEFAULT_MAGNITUDE);
         toggle();
     }
-    
+
     public Gravity (double direction, double magnitude) {
         myGravityForce = new Vector(direction, magnitude);
     }

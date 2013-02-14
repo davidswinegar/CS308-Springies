@@ -8,12 +8,13 @@ import simulation.masses.Mass;
 import simulation.springs.Spring;
 import simulation.springs.UserSpring;
 
+
 public class Assembly {
 
     private List<Mass> myMasses;
     private List<Spring> mySprings;
     private UserSpring myUserSpring;
-    
+
     public Assembly () {
         myMasses = new ArrayList<Mass>();
         mySprings = new ArrayList<Spring>();
@@ -30,7 +31,7 @@ public class Assembly {
             m.paint(pen);
         }
     }
-    
+
     /**
      * Update springs for this moment, given the time since the last moment.
      */
@@ -39,7 +40,7 @@ public class Assembly {
             s.update(elapsedTime, bounds);
         }
     }
-    
+
     /**
      * Update masses for this moment, given the time since the last moment.
      */
@@ -48,7 +49,7 @@ public class Assembly {
             m.update(elapsedTime, bounds);
         }
     }
-    
+
     /**
      * Add given mass to this simulation.
      */
@@ -62,21 +63,21 @@ public class Assembly {
     public void add (Spring spring) {
         mySprings.add(spring);
     }
-    
+
     public void add (UserSpring uspring) {
         myUserSpring = uspring;
         mySprings.add(uspring);
     }
-    
+
     public List<Mass> getMassList () {
         return myMasses;
     }
-    
-    public void removeUserSpring() {
-        if(myUserSpring != null) {
+
+    public void removeUserSpring () {
+        if (myUserSpring != null) {
             mySprings.remove(myUserSpring);
             myUserSpring = null;
         }
     }
-    
+
 }

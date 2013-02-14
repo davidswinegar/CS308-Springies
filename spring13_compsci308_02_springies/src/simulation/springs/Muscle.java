@@ -4,11 +4,14 @@ import java.awt.Dimension;
 import simulation.masses.Mass;
 import view.Canvas;
 
+
 /**
- * Connector between two masses which not only acts like a spring but also oscillates based on amplitude
+ * Connector between two masses which not only acts like a spring but also oscillates based on
+ * amplitude
  * input in the environment.
+ * 
  * @author David Le
- *
+ * 
  */
 public class Muscle extends Spring {
 

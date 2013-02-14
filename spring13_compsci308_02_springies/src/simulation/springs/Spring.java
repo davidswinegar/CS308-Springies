@@ -66,8 +66,8 @@ public class Spring extends Sprite {
         setSize(getSize(myStart, myEnd));
         setVelocity(Vector.angleBetween(dx, dy), 0);
     }
-    
-    public Mass getEnd() {
+
+    public Mass getEnd () {
         return myEnd;
     }
 

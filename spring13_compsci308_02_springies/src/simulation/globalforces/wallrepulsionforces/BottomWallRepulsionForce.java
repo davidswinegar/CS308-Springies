@@ -16,7 +16,7 @@ public class BottomWallRepulsionForce extends WallRepulsionForce {
     public BottomWallRepulsionForce () {
         super(Sprite.UP_DIRECTION);
     }
-    
+
     /**
      * Sends info to superconstructor.
      */

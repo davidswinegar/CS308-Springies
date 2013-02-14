@@ -5,10 +5,11 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import simulation.Model;
 
+
 public abstract class Factory {
 
     private Model myModel;
-    
+
     public Factory (Model model) {
         myModel = model;
     }
@@ -34,6 +35,6 @@ public abstract class Factory {
             e.printStackTrace();
         }
     }
-    
+
     protected abstract void processInput (Scanner line, String type);
 }

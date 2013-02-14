@@ -24,8 +24,8 @@ public class CenterOfMassForce extends GlobalForce {
     public CenterOfMassForce () {
         this(DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
         toggle();
-    }                      
-                              
+    }
+
     /**
      * Sets state.
      */

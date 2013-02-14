@@ -7,6 +7,7 @@ import simulation.globalforces.GlobalForce;
 import simulation.masses.Mass;
 import util.Vector;
 
+
 /**
  * Calculates the wall repulsion vector for one wall and applies to all masses.
  * 
@@ -17,7 +18,7 @@ public abstract class WallRepulsionForce extends GlobalForce {
 
     private static final int DEFAULT_EXPONENT = -1;
     private static final double DEFAULT_MAGNITUDE = .5;
-    
+
     // state used to determine force vector
     private double myDirection;
     private double myMagnitude;
@@ -27,7 +28,7 @@ public abstract class WallRepulsionForce extends GlobalForce {
         this(angle, DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
         toggle();
     }
-    
+
     /**
      * Sets state used to determine force vector.
      */

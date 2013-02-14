@@ -6,14 +6,16 @@ import simulation.factory.AssemblyFactory;
 import simulation.factory.Factory;
 import view.Canvas;
 
+
 public class NewAssemblyListener implements Listener {
 
     private Model myModel;
-    
-    public NewAssemblyListener(Model model) {
+
+    public NewAssemblyListener (Model model) {
         myModel = model;
     }
-    // TODO 
+
+    // TODO
     @Override
     public void takeAction () {
         Factory factory = new AssemblyFactory(myModel);

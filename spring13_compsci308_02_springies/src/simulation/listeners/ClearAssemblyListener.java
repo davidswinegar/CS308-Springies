@@ -2,10 +2,11 @@ package simulation.listeners;
 
 import simulation.Model;
 
+
 public class ClearAssemblyListener implements Listener {
 
     Model myModel;
-    
+
     public ClearAssemblyListener (Model model) {
         myModel = model;
     }
@@ -13,7 +14,7 @@ public class ClearAssemblyListener implements Listener {
     @Override
     public void takeAction () {
         myModel.clearAllAssemblies();
-        
+
     }
 
 }

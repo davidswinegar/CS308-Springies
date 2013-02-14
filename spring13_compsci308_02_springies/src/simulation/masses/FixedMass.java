@@ -1,12 +1,13 @@
 package simulation.masses;
 
-import java.awt.Point;
 import util.Vector;
+
 
 /**
  * A mass which does not move/respond to forces acting upon it.
+ * 
  * @author David Le
- *
+ * 
  */
 public class FixedMass extends Mass {
 
@@ -21,5 +22,4 @@ public class FixedMass extends Mass {
     public void applyForce (Vector force) {
     }
 
-    
 }

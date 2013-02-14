@@ -5,8 +5,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import util.Location;
 import util.Pixmap;
-import util.Vector;
 import util.Sprite;
+import util.Vector;
 
 
 /**
@@ -59,9 +59,10 @@ public class Mass extends Sprite {
     public void applyForce (Vector force) {
         myAcceleration.sum(force);
     }
-    
+
     /**
      * Scales the acceleration by the amount passed in.
+     * 
      * @param change
      */
     public void scaleAcceleration (double change) {

@@ -16,7 +16,7 @@ public class LeftWallRepulsionForce extends WallRepulsionForce {
     public LeftWallRepulsionForce () {
         super(Sprite.RIGHT_DIRECTION);
     }
-    
+
     /**
      * Sends info to superconstructor.
      */

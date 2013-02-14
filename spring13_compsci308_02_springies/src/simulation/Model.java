@@ -30,7 +30,7 @@ import view.Canvas;
  */
 public class Model {
     public static final int MAX_DISTANCE = 9999;
-    
+
     // bounds and input for game
     private Canvas myView;
     // simulation state
@@ -56,7 +56,7 @@ public class Model {
      * Draw all elements of the simulation.
      */
     public void paint (Graphics2D pen) {
-        for (Assembly a : myAssemblies) { 
+        for (Assembly a : myAssemblies) {
             a.paint(pen);
         }
     }
@@ -73,7 +73,7 @@ public class Model {
             myUserSpring.getAssembly().removeUserSpring();
             myUserSpring = null;
         }
-        for (Assembly a : myAssemblies) { 
+        for (Assembly a : myAssemblies) {
             a.updateSprings(elapsedTime, myBounds);
             for (GlobalForce f : myGlobalForces) {
                 f.applyForceIfToggledOn(a, myBounds);
@@ -81,21 +81,21 @@ public class Model {
             a.updateMasses(elapsedTime, myBounds);
         }
     }
-    
+
     public void changeBoundsSize (int amount) {
         myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
     }
 
-    private void updateUserSpring() {
+    private void updateUserSpring () {
         Point mousePosition = myView.getLastMousePosition();
-        if(myUserSpring == null) {
+        if (myUserSpring == null) {
             double minDistance = MAX_DISTANCE;
             Assembly targetAssembly = null;
             Mass targetMass = null;
             for (Assembly a : myAssemblies) {
-                for(Mass m : a.getMassList()){
+                for (Mass m : a.getMassList()) {
                     double distance = mousePosition.distance(m.getX(), m.getY());
-                    if(distance < minDistance){
+                    if (distance < minDistance) {
                         minDistance = distance;
                         targetAssembly = a;
                         targetMass = m;
@@ -109,54 +109,54 @@ public class Model {
             myUserSpring.getEnd().setCenter(mousePosition.getX(), mousePosition.getY());
         }
     }
-    
+
     /**
      * Add given forces to this simulation.
      */
     public void addGlobalForces (List<GlobalForce> forces) {
         myGlobalForces = forces;
     }
-    
-    //TODO temp method, remove later
+
+    // TODO temp method, remove later
     public void add (GlobalForce force) {
-         myGlobalForces.add(force);
+        myGlobalForces.add(force);
     }
-    
+
     /**
      * Add given assembly to this simulation.
      */
     public void add (Assembly assembly) {
         myAssemblies.add(assembly);
     }
-    
+
     /**
      * Add given listener to this simulation.
      */
     public void add (int key, Listener listener) {
         myListenerMap.put(key, listener);
     }
-    
+
     /**
      * Removes all assemblies from the simulation.
      */
     public void clearAllAssemblies () {
         myAssemblies = new ArrayList<Assembly>();
     }
-    
+
     public void getLastKeyAndCallListener () {
         int keyPressed = myView.getLastKeyPressed();
-        if (myListenerMap.containsKey(keyPressed)) { 
+        if (myListenerMap.containsKey(keyPressed)) {
             myListenerMap.get(keyPressed).takeAction();
         }
     }
-    
+
     public void addAllListeners () {
         myListenerMap.put(KeyEvent.VK_UP, new IncreaseBorderListener(this));
         myListenerMap.put(KeyEvent.VK_DOWN, new DecreaseBorderListener(this));
         myListenerMap.put(KeyEvent.VK_N, new NewAssemblyListener(this));
         myListenerMap.put(KeyEvent.VK_C, new ClearAssemblyListener(this));
     }
-    
+
     public void getMouseAndCallListener (Map<Integer, Listener> listenerMap) {
         myListenerMap = listenerMap;
     }

@@ -16,6 +16,7 @@ import simulation.globalforces.wallrepulsionforces.TopWallRepulsionForce;
 import simulation.globalforces.wallrepulsionforces.WallRepulsionForce;
 import simulation.listeners.GlobalForceListener;
 
+
 /**
  * The Factory class is responsible for interpreting the input files and constructing the
  * appropriate objects.
@@ -37,7 +38,7 @@ public class ForceFactory extends Factory {
     public ForceFactory (Model model) {
         super(model);
     }
-    
+
     @Override
     protected void processInput (Scanner line, String type) {
         // TODO Auto-generated method stub
@@ -54,7 +55,7 @@ public class ForceFactory extends Factory {
             getModel().add(addWall(line));
         }
     }
-    
+
     public List<GlobalForce> initializeGlobalForces () {
         Model model = getModel();
         List<GlobalForce> forces = new ArrayList<GlobalForce>();
@@ -74,8 +75,8 @@ public class ForceFactory extends Factory {
         model.add(KeyEvent.VK_V, new GlobalForceListener(viscosity));
         return forces;
     }
-    
- // create gravity from formatted data
+
+    // create gravity from formatted data
     private Gravity addGravity (Scanner line) {
         double angle = line.nextDouble();
         double magnitude = line.nextDouble();
@@ -118,5 +119,4 @@ public class ForceFactory extends Factory {
         return wallForce;
     }
 
-    
 }
