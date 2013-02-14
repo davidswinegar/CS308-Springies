@@ -17,7 +17,7 @@ import util.Vector;
 public class Gravity extends GlobalForce {
     private static final int DEFAULT_MAGNITUDE = -10;
     // Gravity vector
-    Vector myGravityForce;
+    private Vector myGravityForce;
     
     
     public Gravity () {

@@ -187,6 +187,10 @@ public class Factory {
                                        new BottomWallRepulsionForce(id, magnitude, exponent),
                                        new LeftWallRepulsionForce(id, magnitude, exponent)
         };
-        return forces[id - 1];
+        int[] keys = { KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
+        WallRepulsionForce wallForce = forces[id - 1];
+        int key = keys[id - 1];
+        mySimulation.add(key, new GlobalForceListener(wallForce));
+        return wallForce;
     }
 }
