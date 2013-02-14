@@ -1,0 +1,19 @@
+Here is what is properly accepted in data files.
+
+
+*.xsp 
+
+mass id(int) x(double) y(double) mass(double)
+spring mass1id(int) mass2id(int) restlength(double) springconstant(double)
+muscle mass1id(int) mass2id(int) restlength(double) springconstant(double) amplitude(double)
+
+
+-----------------------------------------
+
+
+environment.xsp
+
+gravity angle(double) magnitude(double) 
+viscosity scale(double)
+centermass magnitude(double) exponent(double)
+wall id(int) magnitude(double) exponent(double)
