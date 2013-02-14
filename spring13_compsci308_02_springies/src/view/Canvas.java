@@ -19,8 +19,10 @@ import java.util.TreeSet;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.Timer;
-import simulation.Factory;
 import simulation.Model;
+import simulation.factory.AssemblyFactory;
+import simulation.factory.Factory;
+import simulation.factory.ForceFactory;
 
 
 /**
@@ -60,7 +62,6 @@ public class Canvas extends JComponent {
     private Point myLastMousePosition;
     private boolean myMouseClick;
     private Set<Integer> myKeys;
-    private Factory myFactory;
 
     /**
      * Create a panel so that it knows its size
@@ -209,19 +210,20 @@ public class Canvas extends JComponent {
 
     // load model from file chosen by user
     private void loadModel () {
-        myFactory = new Factory(mySimulation);
+        Factory assemblyFactory = new AssemblyFactory(mySimulation);
         int response = INPUT_CHOOSER.showDialog(null, "Assembly file");
         if (response == JFileChooser.APPROVE_OPTION) {
-            myFactory.loadAssembly(INPUT_CHOOSER.getSelectedFile());
+            assemblyFactory.loadFile(INPUT_CHOOSER.getSelectedFile());
         }
     }
 
     // loads environment file chosen by user and checks for environment name match
     private void loadEnvironment () {
+        ForceFactory forceFactory = new ForceFactory(mySimulation);
         int response = INPUT_CHOOSER.showDialog(null, "Environment file");
         String responseName = INPUT_CHOOSER.getSelectedFile().getName();
         if (response == JFileChooser.APPROVE_OPTION && responseName.equals(ENVIRONMENT_NAME)) {
-            myFactory.loadEnvironment(INPUT_CHOOSER.getSelectedFile());
+            forceFactory.loadFile(INPUT_CHOOSER.getSelectedFile());
         }
     }
 }

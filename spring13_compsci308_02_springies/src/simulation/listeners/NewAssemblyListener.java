@@ -1,8 +1,9 @@
 package simulation.listeners;
 
 import javax.swing.JFileChooser;
-import simulation.Factory;
 import simulation.Model;
+import simulation.factory.AssemblyFactory;
+import simulation.factory.Factory;
 import view.Canvas;
 
 public class NewAssemblyListener implements Listener {
@@ -15,10 +16,10 @@ public class NewAssemblyListener implements Listener {
     // TODO 
     @Override
     public void takeAction () {
-        Factory factory = new Factory(myModel);
+        Factory factory = new AssemblyFactory(myModel);
         int response = Canvas.INPUT_CHOOSER.showDialog(null, "Assembly file");
         if (response == JFileChooser.APPROVE_OPTION) {
-            factory.loadAssembly(Canvas.INPUT_CHOOSER.getSelectedFile());
+            factory.loadFile(Canvas.INPUT_CHOOSER.getSelectedFile());
         }
     }
 
