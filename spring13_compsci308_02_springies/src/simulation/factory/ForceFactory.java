@@ -20,8 +20,8 @@ import simulation.listeners.GlobalForceListener;
 
 
 /**
- * The Factory class is responsible for interpreting the input files and constructing the
- * appropriate objects.
+ * The ForceFactory class is responsible for interpreting the input files and constructing forces. 
+ * It creates one set of default forces and replaces them if new ones are read from the data file.
  * 
  * @author Robert C. Duvall
  * @author David Winegar
@@ -33,16 +33,31 @@ public class ForceFactory extends Factory {
     private static final String VISCOSITY_KEYWORD = "viscosity";
     private static final String CENTERMASS_KEYWORD = "centermass";
     private static final String WALL_KEYWORD = "wall";
+    private static final int TOP_WALL_NUMBER = 1;
+    private static final int RIGHT_WALL_NUMBER = 2;
+    private static final int BOTTOM_WALL_NUMBER = 3;
+    private static final int LEFT_WALL_NUMBER = 4;
+
+    
 
     private Map<Integer, GlobalForce> myGlobalForces = new HashMap<Integer, GlobalForce>();
 
     /**
-     * Creates an assembly based on file input and passes it to the model.
+     * Passes model to superconstructor.
+     * 
+     * @param model creates forces for this model
      */
     public ForceFactory (Model model) {
         super(model);
+        initializeGlobalForces();
     }
 
+    /**
+     * Reads input and calls helper methods to add forces to model.
+     * 
+     * @param line scanner of next information
+     * @param type current line
+     */
     @Override
     protected void processInput (Scanner line, String type) {
 
@@ -60,6 +75,9 @@ public class ForceFactory extends Factory {
         }
     }
 
+    /**
+     * Loads forces into model and adds listeners to Model.
+     */
     @Override
     protected void loadItemsIntoModel () {
         Model model = getModel();
@@ -72,11 +90,9 @@ public class ForceFactory extends Factory {
         model.addGlobalForces(forceList);
     }
 
-    @Override
-    protected void initializeReadFile () {
-        initializeGlobalForces();
-    }
-
+    /**
+     * Initializes all global forces and puts them in a map.
+     */
     public void initializeGlobalForces () {
 
         CenterOfMassForce centerOfMass = new CenterOfMassForce();
@@ -95,7 +111,10 @@ public class ForceFactory extends Factory {
         myGlobalForces.put(KeyEvent.VK_V, viscosity);
     }
 
-    // create gravity from formatted data
+    /**
+     * Replaces default gravity with data read from file
+     * @param line information to be read
+     */
     private void addGravity (Scanner line) {
         double angle = line.nextDouble();
         double magnitude = line.nextDouble();
@@ -103,14 +122,20 @@ public class ForceFactory extends Factory {
         myGlobalForces.put(KeyEvent.VK_G, gravity);
     }
 
-    // create gravity from formatted data
+    /**
+     * Replaces default viscosity with data read from file
+     * @param line information to be read
+     */
     private void addViscosity (Scanner line) {
         double scale = line.nextDouble();
         ViscosityForce viscosity = new ViscosityForce(scale);
         myGlobalForces.put(KeyEvent.VK_V, viscosity);
     }
 
-    // create gravity from formatted data
+    /**
+     * Replaces default center of mass with data read from file
+     * @param line information to be read
+     */
     private void addCenterMass (Scanner line) {
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
@@ -118,20 +143,32 @@ public class ForceFactory extends Factory {
         myGlobalForces.put(KeyEvent.VK_M, centerOfMass);
     }
 
-    // create gravity from formatted data
+    /**
+     * Replaces default wall repulsion force with data read from file
+     * @param line information to be read
+     */
     private void addWall (Scanner line) {
         int id = line.nextInt();
         double magnitude = line.nextDouble();
         double exponent = line.nextDouble();
-        WallRepulsionForce[] forces = { new TopWallRepulsionForce(magnitude, exponent),
-                                       new RightWallRepulsionForce(magnitude, exponent),
-                                       new BottomWallRepulsionForce(magnitude, exponent),
-                                       new LeftWallRepulsionForce(magnitude, exponent)
-        };
-
-        int[] keys = { KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
-        WallRepulsionForce wallForce = forces[id - 1];
-        int key = keys[id - 1];
+        WallRepulsionForce wallForce = null;
+        int key = 0;
+        if (id == TOP_WALL_NUMBER) {
+            wallForce = new TopWallRepulsionForce(magnitude, exponent);
+            key = KeyEvent.VK_1;
+        }
+        else if (id == RIGHT_WALL_NUMBER) {
+            wallForce = new RightWallRepulsionForce(magnitude, exponent);
+            key = KeyEvent.VK_2;
+        }
+        else if (id == BOTTOM_WALL_NUMBER) {
+            wallForce = new BottomWallRepulsionForce(magnitude, exponent);
+            key = KeyEvent.VK_3;
+        }
+        else if (id == LEFT_WALL_NUMBER) {
+            wallForce = new LeftWallRepulsionForce(magnitude, exponent);
+            key = KeyEvent.VK_4;
+        }
         myGlobalForces.put(key, wallForce);
     }
 

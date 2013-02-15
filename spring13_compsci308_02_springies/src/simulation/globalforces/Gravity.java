@@ -21,7 +21,7 @@ public class Gravity extends GlobalForce {
     private Vector myGravityForce;
 
     /**
-     * Sends default magnitude and default (down) direction to overloaded constructor.
+     * Sends default magnitude and default (down) direction to overloaded constructor and toggles force off.
      */
     public Gravity () {
         this(Sprite.DOWN_DIRECTION, DEFAULT_MAGNITUDE);
@@ -39,7 +39,7 @@ public class Gravity extends GlobalForce {
     }
 
     /**
-     * Applies gravity force vector to each mass.
+     * Applies gravity force vector to each mass in assembly.
      * 
      * @param assembly input assembly containing masses
      * @param bounds bounds of area

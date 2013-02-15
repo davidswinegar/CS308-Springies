@@ -16,13 +16,13 @@ import util.Vector;
 public class CenterOfMassForce extends GlobalForce {
 
     private static final int DEFAULT_EXPONENT = -1;
-    private static final double DEFAULT_MAGNITUDE = .5;
+    private static final double DEFAULT_MAGNITUDE = 1;
     // state used to determine force vector
     private double myMagnitude;
     private double myExponent;
 
     /**
-     * Sends default magnitude and default exponent to overloaded constructor.
+     * Sends default magnitude and default exponent to overloaded constructor and toggles force off.
      */
     public CenterOfMassForce () {
         this(DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
@@ -46,7 +46,7 @@ public class CenterOfMassForce extends GlobalForce {
      * applies it to
      * each mass.
      * 
-     * @param assembly input assembly containing masses
+     * @param assembly assembly containing masses
      * @param bounds bounds of area.
      */
     @Override

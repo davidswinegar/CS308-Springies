@@ -97,11 +97,16 @@ public class Model {
         myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
     }
 
+    /**
+     * Creates user spring if not already created and updates if already created.
+     */
     private void updateUserSpring () {
-        Point mousePosition = myView.getLastMousePosition();
         if (myAssemblies.isEmpty()) {
             return;
         }
+        
+        Point mousePosition = myView.getLastMousePosition();
+        
         if (myUserSpring == null) {
             double minDistance = MAX_DISTANCE;
             Assembly targetAssembly = null;

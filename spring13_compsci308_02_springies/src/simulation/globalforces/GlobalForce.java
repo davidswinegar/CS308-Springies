@@ -7,15 +7,15 @@ import simulation.Assembly;
 /**
  * Global forces which are created depending on the environment input.
  * 
- * @author David Le & David Winegar
- * 
+ * @author David Le
+ * @author David Winegar
  */
 public abstract class GlobalForce {
 
     private boolean myForceIsCurrentlyOn = true;
 
     /**
-     * Checks to see if force is curretly toggled on and then calls applyForce if it is.
+     * Checks to see if force is currently toggled on and then calls applyForce if it is.
      * 
      * @param assembly input assembly containing masses
      * @param bounds bounds of area

@@ -12,8 +12,8 @@ import simulation.springs.Spring;
 
 
 /**
- * The Factory class is responsible for interpreting the input files and constructing the
- * appropriate objects.
+ * The AssemblyFactory class is responsible for interpreting the input files and constructing an
+ * assembly from the file.
  * 
  * @author Robert C. Duvall
  * @author David Winegar
@@ -28,15 +28,21 @@ public class AssemblyFactory extends Factory {
     // mass IDs
     private Map<Integer, Mass> myMasses = new HashMap<Integer, Mass>();
 
-    Assembly myAssembly = new Assembly();
+    private Assembly myAssembly = new Assembly();
 
     /**
-     * Creates an assembly based on file input and passes it to the model.
+     * Passes model to superconstructor.
+     * 
+     * @param model creates assembly for this model
      */
     public AssemblyFactory (Model model) {
         super(model);
     }
 
+    /**
+     * If assembly has no masses, does not add it to the model. If assembly has masses, it gets
+     * added to model.
+     */
     @Override
     protected void loadItemsIntoModel () {
         if (myAssembly.hasMasses()) {
@@ -44,21 +50,30 @@ public class AssemblyFactory extends Factory {
         }
     }
 
+    /**
+     * Reads input and calls helper methods to add objects to assembly.
+     * 
+     * @param line scanner of next information
+     * @param type current line
+     */
     @Override
     protected void processInput (Scanner line, String type) {
         if (MASS_KEYWORD.equals(type)) {
-            myAssembly.add(addMass(line));
+            addMass(line);
         }
         else if (SPRING_KEYWORD.equals(type)) {
-            myAssembly.add(addSpring(line));
+            addSpring(line);
         }
         else if (MUSCLE_KEYWORD.equals(type)) {
-            myAssembly.add(addMuscle(line));
+            addMuscle(line);
         }
     }
 
-    // create mass from formatted data
-    private Mass addMass (Scanner line) {
+    /**
+     * Create mass from formatted data
+     * @param line information to be read
+     */
+    private void addMass (Scanner line) {
         double x = line.nextDouble();
         double y = line.nextDouble();
         double mass = line.nextDouble();
@@ -72,26 +87,32 @@ public class AssemblyFactory extends Factory {
         }
         myMasses.put(id, result);
 
-        return result;
+        myAssembly.add(result);
     }
 
-    // create spring from formatted data
-    private Spring addSpring (Scanner line) {
+    /**
+     * Create spring from formatted data
+     * @param line information to be read
+     */
+    private void addSpring (Scanner line) {
         Mass m1 = myMasses.get(line.nextInt());
         Mass m2 = myMasses.get(line.nextInt());
         double restLength = line.nextDouble();
         double ks = line.nextDouble();
-        return new Spring(m1, m2, restLength, ks);
+        myAssembly.add(new Spring(m1, m2, restLength, ks));
     }
 
-    // create muscle from formatted data
-    private Muscle addMuscle (Scanner line) {
+    /**
+     * Create muscle from formatted data
+     * @param line information to be read
+     */
+    private void addMuscle (Scanner line) {
         Mass m1 = myMasses.get(line.nextInt());
         Mass m2 = myMasses.get(line.nextInt());
         double restLength = line.nextDouble();
         double ks = line.nextDouble();
         double amplitude = line.nextDouble();
-        return new Muscle(m1, m2, restLength, ks, amplitude);
+        myAssembly.add(new Muscle(m1, m2, restLength, ks, amplitude));
     }
 
 }

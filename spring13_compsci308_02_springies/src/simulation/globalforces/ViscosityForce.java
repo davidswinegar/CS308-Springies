@@ -40,7 +40,7 @@ public class ViscosityForce extends GlobalForce {
      * Finds velocity vector, negates it, scales it down, and applies it as a force for each mass in
      * assembly.
      * 
-     * @param assembly assembly containing masses
+     * @param assembly assembly containing mass list
      * @param bounds bounds of area.
      */
     @Override

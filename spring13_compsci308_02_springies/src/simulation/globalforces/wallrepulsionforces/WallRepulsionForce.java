@@ -25,7 +25,7 @@ public abstract class WallRepulsionForce extends GlobalForce {
     private double myExponent;
     
     /**
-     * Sends information to other constructor.
+     * Sends information to overloaded constructor and toggles force off.
      * @param angle direction force goes
      */
     public WallRepulsionForce (double angle) {
