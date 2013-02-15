@@ -8,11 +8,13 @@ import simulation.masses.Mass;
 import simulation.springs.Spring;
 import simulation.springs.UserSpring;
 
+
 /**
  * Assembly of masses and springs which will be put into the model simulation
+ * 
  * @author David Winegar
  * @author David Le
- *
+ * 
  */
 public class Assembly {
 
@@ -30,6 +32,7 @@ public class Assembly {
 
     /**
      * Draw all elements of the assembly.
+     * 
      * @param pen to draw elements on canvas
      */
     public void paint (Graphics2D pen) {
@@ -43,6 +46,7 @@ public class Assembly {
 
     /**
      * Update springs and masses for this moment, given the time since the last moment.
+     * 
      * @param elapsedTime since last update
      * @param bounds of model
      */
@@ -57,6 +61,7 @@ public class Assembly {
 
     /**
      * Add given mass to this simulation.
+     * 
      * @param mass to be added
      */
     public void add (Mass mass) {
@@ -65,6 +70,7 @@ public class Assembly {
 
     /**
      * Add given spring to this simulation.
+     * 
      * @param spring to be added
      */
     public void add (Spring spring) {
@@ -73,6 +79,7 @@ public class Assembly {
 
     /**
      * Add given user spring to this simulation
+     * 
      * @param uspring to be added
      */
     public void add (UserSpring uspring) {
@@ -82,6 +89,7 @@ public class Assembly {
 
     /**
      * Returns mass list
+     * 
      * @return myMasses
      */
     public List<Mass> getMassList () {
@@ -100,6 +108,7 @@ public class Assembly {
 
     /**
      * Returns true if there are masses in this assembly
+     * 
      * @return true if empty
      */
     public boolean hasMasses () {

@@ -26,6 +26,7 @@ public class Muscle extends Spring {
 
     /**
      * Constructs muscle which will expand and contract
+     * 
      * @param start mass to be connected to
      * @param end mass to be connected to
      * @param length of muscle
@@ -40,6 +41,7 @@ public class Muscle extends Spring {
 
     /**
      * Applies for on the two ends of the muscle as well as updates length to provide oscillation.
+     * 
      * @param elapsedTime since last update
      * @param bounds of model
      */

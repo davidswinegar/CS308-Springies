@@ -21,7 +21,8 @@ public class Gravity extends GlobalForce {
     private Vector myGravityForce;
 
     /**
-     * Sends default magnitude and default (down) direction to overloaded constructor and toggles force off.
+     * Sends default magnitude and default (down) direction to overloaded constructor and toggles
+     * force off.
      */
     public Gravity () {
         this(Sprite.DOWN_DIRECTION, DEFAULT_MAGNITUDE);

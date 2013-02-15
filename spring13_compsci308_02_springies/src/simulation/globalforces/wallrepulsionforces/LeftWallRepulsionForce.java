@@ -22,6 +22,7 @@ public class LeftWallRepulsionForce extends WallRepulsionForce {
 
     /**
      * Sends info to superconstructor.
+     * 
      * @param magnitude used to calculate force
      * @param exponent used to calculate force
      */
@@ -32,6 +33,7 @@ public class LeftWallRepulsionForce extends WallRepulsionForce {
 
     /**
      * Calculates distance between mass and left wall.
+     * 
      * @param mass used to get location
      * @param bounds used to get distance from bounds
      */

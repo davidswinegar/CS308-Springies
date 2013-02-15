@@ -6,8 +6,10 @@ import simulation.factory.AssemblyFactory;
 import simulation.factory.Factory;
 import view.Canvas;
 
+
 /**
  * Listener which listens for the creation of a new assembly.
+ * 
  * @author David Le
  * @author David Winegar
  */
@@ -17,6 +19,7 @@ public class NewAssemblyListener implements Listener {
 
     /**
      * Constructs new "new assembly listener"
+     * 
      * @param model to add the listener to
      */
     public NewAssemblyListener (Model model) {

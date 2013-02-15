@@ -38,7 +38,7 @@ import simulation.factory.ForceFactory;
  * @author David Le
  */
 public class Canvas extends JComponent {
-    
+
     /**
      * Animate 25 times per second if possible.
      */
@@ -79,6 +79,7 @@ public class Canvas extends JComponent {
 
     /**
      * Create a panel so that it knows its size
+     * 
      * @param size of canvas
      */
     public Canvas (Dimension size) {

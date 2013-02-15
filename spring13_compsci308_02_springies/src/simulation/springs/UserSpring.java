@@ -5,8 +5,10 @@ import simulation.Assembly;
 import simulation.masses.FixedMass;
 import simulation.masses.Mass;
 
+
 /**
  * User spring created upon mouse click to interact with assembly of the closest mass
+ * 
  * @author David Le
  * @author David Winegar
  */
@@ -20,6 +22,7 @@ public class UserSpring extends Spring {
 
     /**
      * Formats the construction to be passed in the format of the parent spring class
+     * 
      * @param start mass
      * @param mousePosition to attach spring to
      * @param assembly which the start mass is attached to
@@ -32,6 +35,7 @@ public class UserSpring extends Spring {
 
     /**
      * Constructs the user spring and attaches it to assembly of the closest mass
+     * 
      * @param start mass
      * @param end mass
      * @param length of spring
@@ -43,6 +47,7 @@ public class UserSpring extends Spring {
 
     /**
      * Returns the assembly which the user spring is connected to
+     * 
      * @return
      */
     public Assembly getAssembly () {

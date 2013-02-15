@@ -71,6 +71,7 @@ public class AssemblyFactory extends Factory {
 
     /**
      * Create mass from formatted data
+     * 
      * @param line information to be read
      */
     private void addMass (Scanner line) {
@@ -92,6 +93,7 @@ public class AssemblyFactory extends Factory {
 
     /**
      * Create spring from formatted data
+     * 
      * @param line information to be read
      */
     private void addSpring (Scanner line) {
@@ -104,6 +106,7 @@ public class AssemblyFactory extends Factory {
 
     /**
      * Create muscle from formatted data
+     * 
      * @param line information to be read
      */
     private void addMuscle (Scanner line) {

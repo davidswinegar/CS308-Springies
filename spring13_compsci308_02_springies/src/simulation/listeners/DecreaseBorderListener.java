@@ -2,8 +2,10 @@ package simulation.listeners;
 
 import simulation.Model;
 
+
 /**
  * Listener which listens for the border decrease
+ * 
  * @author David Le
  * @author David Winegar
  */
@@ -14,6 +16,7 @@ public class DecreaseBorderListener implements Listener {
 
     /**
      * Constructs listener
+     * 
      * @param model to be added to
      */
     public DecreaseBorderListener (Model model) {

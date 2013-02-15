@@ -35,6 +35,7 @@ public class Spring extends Sprite {
     /**
      * Constructs the spring, telling the spring which mass is the start and end point, how long the
      * spring's rest length is, and the k-springiness constant of the spring.
+     * 
      * @param start mass to be connected to
      * @param end mass to be connected to
      * @param length of spring
@@ -50,6 +51,7 @@ public class Spring extends Sprite {
 
     /**
      * Paints the spring on the canvas.
+     * 
      * @param pen used to draw on canvas
      */
     @Override
@@ -62,6 +64,7 @@ public class Spring extends Sprite {
     /**
      * Updates the spring and applies force to the masses which it is connected to based on Hooke's
      * Law.
+     * 
      * @param elapsedTime since last update
      * @param bounds of model
      */
@@ -83,6 +86,7 @@ public class Spring extends Sprite {
 
     /**
      * Returns the end mass of the spring
+     * 
      * @return
      */
     public Mass getEnd () {

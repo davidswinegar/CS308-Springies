@@ -13,6 +13,7 @@ public class FixedMass extends Mass {
 
     /**
      * Constructs fixed mass to be used in simulation
+     * 
      * @param x coordinate of fixed mass
      * @param y coordinate of fixed mass
      * @param mass weight
@@ -23,6 +24,7 @@ public class FixedMass extends Mass {
 
     /**
      * Because it is a fixed mass, applyForce should not do anything.
+     * 
      * @param force to be applied (not!)
      */
     @Override

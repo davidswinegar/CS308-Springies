@@ -45,6 +45,7 @@ public class Model {
 
     /**
      * Create a game of the given size with the given display for its shapes.
+     * 
      * @param canvas which the model will be drawn on
      */
     public Model (Canvas canvas) {
@@ -58,6 +59,7 @@ public class Model {
 
     /**
      * Draw all elements of the simulation.
+     * 
      * @param pen used to draw elements
      */
     public void paint (Graphics2D pen) {
@@ -69,6 +71,7 @@ public class Model {
 
     /**
      * Update simulation for this moment, given the time since the last moment.
+     * 
      * @param elapsedTime since last update
      */
     public void update (double elapsedTime) {
@@ -91,6 +94,7 @@ public class Model {
 
     /**
      * Adjusts the bounds for the model
+     * 
      * @param amount to adjust
      */
     public void changeBoundsSize (int amount) {
@@ -101,12 +105,10 @@ public class Model {
      * Creates user spring if not already created and updates if already created.
      */
     private void updateUserSpring () {
-        if (myAssemblies.isEmpty()) {
-            return;
-        }
-        
+        if (myAssemblies.isEmpty()) { return; }
+
         Point mousePosition = myView.getLastMousePosition();
-        
+
         if (myUserSpring == null) {
             double minDistance = MAX_DISTANCE;
             Assembly targetAssembly = null;
@@ -131,6 +133,7 @@ public class Model {
 
     /**
      * Add given forces to this simulation.
+     * 
      * @param forces to be added to model
      */
     public void addGlobalForces (List<GlobalForce> forces) {
@@ -139,6 +142,7 @@ public class Model {
 
     /**
      * Add given assembly to this simulation.
+     * 
      * @param assembly to be added
      */
     public void add (Assembly assembly) {
@@ -147,6 +151,7 @@ public class Model {
 
     /**
      * Add given listener to this simulation.
+     * 
      * @param key mapped to listener for input
      * @param listener to be added
      */

@@ -20,7 +20,7 @@ import simulation.listeners.GlobalForceListener;
 
 
 /**
- * The ForceFactory class is responsible for interpreting the input files and constructing forces. 
+ * The ForceFactory class is responsible for interpreting the input files and constructing forces.
  * It creates one set of default forces and replaces them if new ones are read from the data file.
  * 
  * @author Robert C. Duvall
@@ -37,8 +37,6 @@ public class ForceFactory extends Factory {
     private static final int RIGHT_WALL_NUMBER = 2;
     private static final int BOTTOM_WALL_NUMBER = 3;
     private static final int LEFT_WALL_NUMBER = 4;
-
-    
 
     private Map<Integer, GlobalForce> myGlobalForces = new HashMap<Integer, GlobalForce>();
 
@@ -113,6 +111,7 @@ public class ForceFactory extends Factory {
 
     /**
      * Replaces default gravity with data read from file
+     * 
      * @param line information to be read
      */
     private void addGravity (Scanner line) {
@@ -124,6 +123,7 @@ public class ForceFactory extends Factory {
 
     /**
      * Replaces default viscosity with data read from file
+     * 
      * @param line information to be read
      */
     private void addViscosity (Scanner line) {
@@ -134,6 +134,7 @@ public class ForceFactory extends Factory {
 
     /**
      * Replaces default center of mass with data read from file
+     * 
      * @param line information to be read
      */
     private void addCenterMass (Scanner line) {
@@ -145,6 +146,7 @@ public class ForceFactory extends Factory {
 
     /**
      * Replaces default wall repulsion force with data read from file
+     * 
      * @param line information to be read
      */
     private void addWall (Scanner line) {
