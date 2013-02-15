@@ -33,7 +33,7 @@ public class ForceFactory extends Factory {
     private static final String VISCOSITY_KEYWORD = "viscosity";
     private static final String CENTERMASS_KEYWORD = "centermass";
     private static final String WALL_KEYWORD = "wall";
-    
+
     private Map<Integer, GlobalForce> myGlobalForces = new HashMap<Integer, GlobalForce>();
 
     /**
@@ -45,7 +45,7 @@ public class ForceFactory extends Factory {
 
     @Override
     protected void processInput (Scanner line, String type) {
-        
+
         if (GRAVITY_KEYWORD.equals(type)) {
             addGravity(line);
         }
@@ -59,32 +59,32 @@ public class ForceFactory extends Factory {
             addWall(line);
         }
     }
-    
+
     @Override
     protected void loadItemsIntoModel () {
         Model model = getModel();
-        
-        for(Integer i : myGlobalForces.keySet()) {
+
+        for (Integer i : myGlobalForces.keySet()) {
             model.add(i, new GlobalForceListener(myGlobalForces.get(i)));
         }
-        
+
         List<GlobalForce> forceList = new ArrayList<GlobalForce>(myGlobalForces.values());
-        model.addGlobalForces(forceList);        
+        model.addGlobalForces(forceList);
     }
-    
+
     @Override
     protected void initializeReadFile () {
         initializeGlobalForces();
     }
 
     public void initializeGlobalForces () {
-        
+
         CenterOfMassForce centerOfMass = new CenterOfMassForce();
         myGlobalForces.put(KeyEvent.VK_M, centerOfMass);
         Gravity gravity = new Gravity();
         myGlobalForces.put(KeyEvent.VK_G, gravity);
         WallRepulsionForce topWallForce = new TopWallRepulsionForce();
-        myGlobalForces.put(KeyEvent.VK_1,topWallForce);
+        myGlobalForces.put(KeyEvent.VK_1, topWallForce);
         WallRepulsionForce rightWallForce = new RightWallRepulsionForce();
         myGlobalForces.put(KeyEvent.VK_2, rightWallForce);
         WallRepulsionForce bottomWallForce = new BottomWallRepulsionForce();
@@ -128,13 +128,11 @@ public class ForceFactory extends Factory {
                                        new BottomWallRepulsionForce(magnitude, exponent),
                                        new LeftWallRepulsionForce(magnitude, exponent)
         };
-        
+
         int[] keys = { KeyEvent.VK_UP, KeyEvent.VK_RIGHT, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT };
         WallRepulsionForce wallForce = forces[id - 1];
         int key = keys[id - 1];
         myGlobalForces.put(key, wallForce);
     }
-
-    
 
 }

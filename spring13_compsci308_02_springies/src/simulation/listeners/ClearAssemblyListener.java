@@ -13,7 +13,7 @@ public class ClearAssemblyListener implements Listener {
 
     @Override
     public void takeAction () {
-       myModel.clearAllAssemblies();
+        myModel.clearAllAssemblies();
 
     }
 

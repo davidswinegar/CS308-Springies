@@ -51,7 +51,6 @@ public class Canvas extends JComponent {
     // input state
     public static final int NO_KEY_PRESSED = -1;
     public static final Point NO_MOUSE_PRESSED = null;
-    public static final String ENVIRONMENT_NAME = "environment.xsp";
 
     // drives the animation
     private Timer myTimer;
@@ -141,7 +140,7 @@ public class Canvas extends JComponent {
                             });
         // start animation
         mySimulation = new Model(this);
-        loadModel();
+        loadAssembly();
         loadEnvironment();
         myTimer.start();
     }
@@ -209,16 +208,20 @@ public class Canvas extends JComponent {
         });
     }
 
-    // load model from file chosen by user
-    private void loadModel () {
+    /**
+     * Load an assembly from file chosen by user.
+     */
+    private void loadAssembly () {
         Factory assemblyFactory = new AssemblyFactory(mySimulation);
         int response = INPUT_CHOOSER.showDialog(null, "Assembly file");
         if (response == JFileChooser.APPROVE_OPTION) {
             assemblyFactory.loadFile(INPUT_CHOOSER.getSelectedFile());
         }
     }
-    
-    // loads environment file chosen by user and checks for environment name match
+
+    /**
+     * Loads environment file chosen by user.
+     */
     private void loadEnvironment () {
         Factory forceFactory = new ForceFactory(mySimulation);
         int response = INPUT_CHOOSER.showDialog(null, "Environment file");

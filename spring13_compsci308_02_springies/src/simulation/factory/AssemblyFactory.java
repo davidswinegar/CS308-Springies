@@ -36,10 +36,10 @@ public class AssemblyFactory extends Factory {
     public AssemblyFactory (Model model) {
         super(model);
     }
-    
+
     @Override
     protected void loadItemsIntoModel () {
-        if(myAssembly.hasMasses()){
+        if (myAssembly.hasMasses()) {
             getModel().add(myAssembly);
         }
     }

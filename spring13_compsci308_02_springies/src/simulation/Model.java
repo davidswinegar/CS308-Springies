@@ -59,7 +59,6 @@ public class Model {
         for (Assembly a : myAssemblies) {
             a.paint(pen);
         }
-        
 
     }
 
@@ -90,9 +89,7 @@ public class Model {
 
     private void updateUserSpring () {
         Point mousePosition = myView.getLastMousePosition();
-        if(myAssemblies.isEmpty()){
-            return;
-        }
+        if (myAssemblies.isEmpty()) return;
         if (myUserSpring == null) {
             double minDistance = MAX_DISTANCE;
             Assembly targetAssembly = null;
@@ -140,7 +137,7 @@ public class Model {
      * Removes all assemblies from the simulation.
      */
     public void clearAllAssemblies () {
-       myAssemblies = new ArrayList<Assembly>();
+        myAssemblies = new ArrayList<Assembly>();
     }
 
     public void getLastKeyAndCallListener () {

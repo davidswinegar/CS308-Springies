@@ -40,7 +40,7 @@ public class ViscosityForce extends GlobalForce {
         for (Mass m : massList) {
             Vector viscosityForce = new Vector(m.getVelocity());
             viscosityForce.negate();
-            viscosityForce.scale(1-myScale);
+            viscosityForce.scale(1 - myScale);
             m.applyForce(viscosityForce);
         }
     }
