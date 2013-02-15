@@ -26,9 +26,12 @@ import view.Canvas;
  * 
  * @author Robert C. Duvall
  * @author David Winegar
- * @Author David Le
+ * @author David Le
  */
 public class Model {
+    /**
+     * Default max length of user spring
+     */
     public static final int MAX_DISTANCE = 9999;
 
     // bounds and input for game
@@ -42,6 +45,7 @@ public class Model {
 
     /**
      * Create a game of the given size with the given display for its shapes.
+     * @param canvas which the model will be drawn on
      */
     public Model (Canvas canvas) {
         myView = canvas;
@@ -54,6 +58,7 @@ public class Model {
 
     /**
      * Draw all elements of the simulation.
+     * @param pen used to draw elements
      */
     public void paint (Graphics2D pen) {
         for (Assembly a : myAssemblies) {
@@ -64,6 +69,7 @@ public class Model {
 
     /**
      * Update simulation for this moment, given the time since the last moment.
+     * @param elapsedTime since last update
      */
     public void update (double elapsedTime) {
         getLastKeyAndCallListener();
@@ -83,13 +89,19 @@ public class Model {
 
     }
 
+    /**
+     * Adjusts the bounds for the model
+     * @param amount to adjust
+     */
     public void changeBoundsSize (int amount) {
         myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
     }
 
     private void updateUserSpring () {
         Point mousePosition = myView.getLastMousePosition();
-        if (myAssemblies.isEmpty()) return;
+        if (myAssemblies.isEmpty()) {
+            return;
+        }
         if (myUserSpring == null) {
             double minDistance = MAX_DISTANCE;
             Assembly targetAssembly = null;
@@ -114,6 +126,7 @@ public class Model {
 
     /**
      * Add given forces to this simulation.
+     * @param forces to be added to model
      */
     public void addGlobalForces (List<GlobalForce> forces) {
         myGlobalForces = forces;
@@ -121,6 +134,7 @@ public class Model {
 
     /**
      * Add given assembly to this simulation.
+     * @param assembly to be added
      */
     public void add (Assembly assembly) {
         myAssemblies.add(assembly);
@@ -128,6 +142,8 @@ public class Model {
 
     /**
      * Add given listener to this simulation.
+     * @param key mapped to listener for input
+     * @param listener to be added
      */
     public void add (int key, Listener listener) {
         myListenerMap.put(key, listener);
@@ -140,6 +156,9 @@ public class Model {
         myAssemblies = new ArrayList<Assembly>();
     }
 
+    /**
+     * Takes action if key is pressed and is contained in listener map
+     */
     public void getLastKeyAndCallListener () {
         int keyPressed = myView.getLastKeyPressed();
         if (myListenerMap.containsKey(keyPressed)) {
@@ -147,14 +166,13 @@ public class Model {
         }
     }
 
+    /**
+     * Adds non-force associated listeners to listener map
+     */
     public void addAllListeners () {
         myListenerMap.put(KeyEvent.VK_UP, new IncreaseBorderListener(this));
         myListenerMap.put(KeyEvent.VK_DOWN, new DecreaseBorderListener(this));
         myListenerMap.put(KeyEvent.VK_N, new NewAssemblyListener(this));
         myListenerMap.put(KeyEvent.VK_C, new ClearAssemblyListener(this));
-    }
-
-    public void getMouseAndCallListener (Map<Integer, Listener> listenerMap) {
-        myListenerMap = listenerMap;
     }
 }

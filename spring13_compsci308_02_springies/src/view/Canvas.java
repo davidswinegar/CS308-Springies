@@ -43,14 +43,23 @@ public class Canvas extends JComponent {
      * Animate 25 times per second if possible.
      */
     public static final int FRAMES_PER_SECOND = 25;
-    // better way to think about timed events (in milliseconds)
+    /**
+     * Better way to think about timed events (in milliseconds)
+     */
     public static final int ONE_SECOND = 1000;
     public static final int DEFAULT_DELAY = ONE_SECOND / FRAMES_PER_SECOND;
-    // only one so that it maintains user's preferences
+    /**
+     * Maintains user's preferences
+     */
     public static final JFileChooser INPUT_CHOOSER =
             new JFileChooser(System.getProperties().getProperty("user.dir"));
-    // input state
+    /**
+     * Keyboard input state
+     */
     public static final int NO_KEY_PRESSED = -1;
+    /**
+     * Mouse input state
+     */
     public static final Point NO_MOUSE_PRESSED = null;
     // default serialization ID
     private static final long serialVersionUID = 1L;
@@ -67,6 +76,7 @@ public class Canvas extends JComponent {
 
     /**
      * Create a panel so that it knows its size
+     * @param size of canvas
      */
     public Canvas (Dimension size) {
         // set size (a bit of a pain)

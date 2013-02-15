@@ -14,10 +14,17 @@ import util.Vector;
  * Spring connects two masses and acts upon the masses based on Hooke's Law.
  * 
  * @author Robert C. Duvall
+ * @author David Le
+ * @author David Winegar
  */
 public class Spring extends Sprite {
-    // reasonable default values
+    /**
+     * Default spring image to be loaded
+     */
     public static final Pixmap DEFUALT_IMAGE = new Pixmap("spring.gif");
+    /**
+     * Default height of image
+     */
     public static final int IMAGE_HEIGHT = 20;
 
     private Mass myStart;
@@ -28,6 +35,10 @@ public class Spring extends Sprite {
     /**
      * Constructs the spring, telling the spring which mass is the start and end point, how long the
      * spring's rest length is, and the k-springiness constant of the spring.
+     * @param start mass to be connected to
+     * @param end mass to be connected to
+     * @param length of spring
+     * @param kVal springiness constant
      */
     public Spring (Mass start, Mass end, double length, double kVal) {
         super(DEFUALT_IMAGE, getCenter(start, end), getSize(start, end));
@@ -39,6 +50,7 @@ public class Spring extends Sprite {
 
     /**
      * Paints the spring on the canvas.
+     * @param pen used to draw on canvas
      */
     @Override
     public void paint (Graphics2D pen) {
@@ -50,6 +62,8 @@ public class Spring extends Sprite {
     /**
      * Updates the spring and applies force to the masses which it is connected to based on Hooke's
      * Law.
+     * @param elapsedTime since last update
+     * @param bounds of model
      */
     @Override
     public void update (double elapsedTime, Dimension bounds) {
@@ -67,6 +81,10 @@ public class Spring extends Sprite {
         setVelocity(Vector.angleBetween(dx, dy), 0);
     }
 
+    /**
+     * Returns the end mass of the spring
+     * @return
+     */
     public Mass getEnd () {
         return myEnd;
     }
@@ -74,7 +92,7 @@ public class Spring extends Sprite {
     /**
      * Returns the length of the spring.
      * 
-     * @param length
+     * @param length of spring
      * @return
      */
     public double getLength (double length) {
@@ -84,7 +102,7 @@ public class Spring extends Sprite {
     /**
      * Sets the length of the spring.
      * 
-     * @param length
+     * @param length to set
      */
     public void setLength (double length) {
         myLength = length;
@@ -94,11 +112,15 @@ public class Spring extends Sprite {
      * Convenience method.
      */
     protected Color getColor (double diff) {
-        if (Vector.fuzzyEquals(diff, 0))
+        if (Vector.fuzzyEquals(diff, 0)) {
             return Color.BLACK;
-        else if (diff < 0.0)
+        }
+        else if (diff < 0.0) {
             return Color.BLUE;
-        else return Color.RED;
+        }
+        else {
+            return Color.RED;
+        }
     }
 
     // compute center of this spring
