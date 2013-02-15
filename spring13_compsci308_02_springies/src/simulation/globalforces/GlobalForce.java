@@ -12,21 +12,41 @@ import simulation.Assembly;
  */
 public abstract class GlobalForce {
 
-    private boolean isCurrentlyOn = true;
+    private boolean myForceIsCurrentlyOn = true;
 
+    /**
+     * Checks to see if force is curretly toggled on and then calls applyForce if it is.
+     * 
+     * @param assembly input assembly containing masses
+     * @param bounds bounds of area
+     */
     public void applyForceIfToggledOn (Assembly assembly, Dimension bounds) {
         if (isToggledOn()) {
             applyForce(assembly, bounds);
         }
     }
 
+    /**
+     * Calculates force vector for each mass and applies it.
+     * 
+     * @param assembly input assembly containing masses
+     * @param bounds bounds of area
+     */
     public abstract void applyForce (Assembly assembly, Dimension bounds);
 
+    /**
+     * Toggles force on and off.
+     */
     public void toggle () {
-        isCurrentlyOn = !isCurrentlyOn;
+        myForceIsCurrentlyOn = !myForceIsCurrentlyOn;
     }
 
+    /**
+     * Checks whether force is currently toggled on.
+     * 
+     * @return returns true if force is toggled on
+     */
     public boolean isToggledOn () {
-        return isCurrentlyOn;
+        return myForceIsCurrentlyOn;
     }
 }

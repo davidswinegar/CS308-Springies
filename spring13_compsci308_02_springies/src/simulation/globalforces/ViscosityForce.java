@@ -8,7 +8,7 @@ import util.Vector;
 
 
 /**
- * Creates a drag on mass.
+ * Creates a drag on the velocity of masses.
  * 
  * @author David Winegar
  * 
@@ -19,20 +19,29 @@ public class ViscosityForce extends GlobalForce {
     // scale current vector by amount
     private double myScale;
 
+    /**
+     * Sends default scale value to overloaded constructor and toggles off.
+     */
     public ViscosityForce () {
         this(DEFAULT_SCALE);
         toggle();
     }
 
     /**
-     * Sets state.
+     * Sets scale value.
+     * 
+     * @param scale value to scale velocity by
      */
     public ViscosityForce (double scale) {
         myScale = scale;
     }
 
     /**
-     * Sets amount to scale by in Mass.
+     * Finds velocity vector, negates it, scales it down, and applies it as a force for each mass in
+     * assembly.
+     * 
+     * @param assembly assembly containing masses
+     * @param bounds bounds of area.
      */
     @Override
     public void applyForce (Assembly assembly, Dimension bounds) {

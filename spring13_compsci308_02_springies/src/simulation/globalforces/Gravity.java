@@ -9,28 +9,40 @@ import util.Vector;
 
 
 /**
- * Global force which pushes in a constant direction and magnitude specified by environment input.
+ * Global force which pushes in a constant direction and magnitude.
  * 
- * @author David Le & David Winegar
- * 
+ * @author David Le
+ * @author David Winegar
  */
 
 public class Gravity extends GlobalForce {
-    private static final int DEFAULT_MAGNITUDE = -10;
+    private static final int DEFAULT_MAGNITUDE = 15;
     // Gravity vector
     private Vector myGravityForce;
 
+    /**
+     * Sends default magnitude and default (down) direction to overloaded constructor.
+     */
     public Gravity () {
         this(Sprite.DOWN_DIRECTION, DEFAULT_MAGNITUDE);
         toggle();
     }
 
+    /**
+     * Creates gravity vector from direction and magnitude.
+     * 
+     * @param direction angle gravity vector is applied on
+     * @param magnitude magnitude of gravity vector
+     */
     public Gravity (double direction, double magnitude) {
         myGravityForce = new Vector(direction, magnitude);
     }
 
     /**
-     * Iterates through each mass in the simulator and applies a constant force.
+     * Applies gravity force vector to each mass.
+     * 
+     * @param assembly input assembly containing masses
+     * @param bounds bounds of area
      */
     @Override
     public void applyForce (Assembly assembly, Dimension bounds) {

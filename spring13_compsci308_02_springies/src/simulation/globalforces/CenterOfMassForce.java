@@ -21,13 +21,20 @@ public class CenterOfMassForce extends GlobalForce {
     private double myMagnitude;
     private double myExponent;
 
+    /**
+     * Sends default magnitude and default exponent to overloaded constructor.
+     */
     public CenterOfMassForce () {
         this(DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
         toggle();
     }
 
     /**
-     * Sets state.
+     * Sets state magnitude and exponent values.
+     * 
+     * @param magnitude used to determine force vector for each assembly
+     * @param exponent used to determine decay of force the farther away mass gets from center of
+     *        mass.
      */
     public CenterOfMassForce (double magnitude, double exponent) {
         myMagnitude = magnitude;
@@ -35,8 +42,12 @@ public class CenterOfMassForce extends GlobalForce {
     }
 
     /**
-     * Finds center of mass, calculates angle and magnitude vector for each mass, and applies it to
+     * Finds center of mass in assembly, calculates angle and magnitude vector for each mass, and
+     * applies it to
      * each mass.
+     * 
+     * @param assembly input assembly containing masses
+     * @param bounds bounds of area.
      */
     @Override
     public void applyForce (Assembly assembly, Dimension bounds) {
@@ -55,7 +66,7 @@ public class CenterOfMassForce extends GlobalForce {
         for (Mass m : massList) {
             // calculate angle between center of mass and this mass
             double angle = Vector.angleBetween(m.getX() - x, m.getY() - y);
-            // magnitude = magnitude / (distance^exponent), because physics
+            // force magnitude = magnitude / (distance^exponent)
             double magnitude =
                     myMagnitude /
                             Math.pow(Vector.distanceBetween(m.getX() - x, m.getY() - y), myExponent);
