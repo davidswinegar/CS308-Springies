@@ -13,12 +13,17 @@ import util.Sprite;
  */
 public class TopWallRepulsionForce extends WallRepulsionForce {
 
+    /**
+     * Sends direction to superconstructor.
+     */
     public TopWallRepulsionForce () {
         super(Sprite.DOWN_DIRECTION);
     }
 
     /**
      * Sends info to superconstructor.
+     * @param magnitude used to calculate force
+     * @param exponent used to calculate force
      */
     public TopWallRepulsionForce (double magnitude,
                                   double exponent) {
@@ -27,6 +32,8 @@ public class TopWallRepulsionForce extends WallRepulsionForce {
 
     /**
      * Calculates distance between mass and top wall.
+     * @param mass used to get location
+     * @param bounds used to get distance from bounds
      */
     @Override
     public double getDistance (Mass mass, Dimension bounds) {

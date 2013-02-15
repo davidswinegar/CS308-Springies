@@ -23,7 +23,11 @@ public abstract class WallRepulsionForce extends GlobalForce {
     private double myDirection;
     private double myMagnitude;
     private double myExponent;
-
+    
+    /**
+     * Sends information to other constructor.
+     * @param angle direction force goes
+     */
     public WallRepulsionForce (double angle) {
         this(angle, DEFAULT_MAGNITUDE, DEFAULT_EXPONENT);
         toggle();
@@ -31,6 +35,9 @@ public abstract class WallRepulsionForce extends GlobalForce {
 
     /**
      * Sets state used to determine force vector.
+     * @param angle angle direction force goes
+     * @param magnitude magnitude of force
+     * @param exponent used to calculate decay based on distance of force size
      */
     public WallRepulsionForce (double angle, double magnitude, double exponent) {
         myMagnitude = magnitude;
@@ -40,6 +47,8 @@ public abstract class WallRepulsionForce extends GlobalForce {
 
     /**
      * Calculates force vector for each mass and applies it.
+     * @param assembly
+     * @param bounds
      */
     @Override
     public void applyForce (Assembly assembly, Dimension bounds) {
@@ -54,6 +63,9 @@ public abstract class WallRepulsionForce extends GlobalForce {
 
     /**
      * Finds distance between wall and mass.
+     * @param mass used to get location
+     * @param bounds used to get distance from bounds
+     * @return distance between wall and mass
      */
     public abstract double getDistance (Mass mass, Dimension bounds);
 
