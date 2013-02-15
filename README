@@ -5,3 +5,40 @@ CS308, spring 2013, Duke University
 
 
 Springies simulates some parts of the Soda Constructor (sodaplay.com). It takes an input of .xsp files and animates them.
+
+Overview
+----------------------------------------
+The simulation begins by asking for the input of a list of masses and springs followed the input of global environment 
+variables (the format of the input can be found in the section titled "Input Format" below. These inputs are then processed 
+by AssemblyFactory and ForceFactory to be applied to the Model.
+
+Model is the main compoenent of the simulation, containing the list of assemblies to be simulated and listening for key 
+and mouse inputs for user interaction. As model updates, it will call each individual assembly to update which will then 
+call the individual masses and springs to update, leading to changes based on mass and spring interaction as well as global 
+force interactions. All of these elements will then be drawn on the Canvas using Graphics2D.
+
+The Model classes uses Listener classes to receive key input. Each listener class is mapped to a KeyEvent integer and a
+an action such as a force toggle or creation of a new assembly such that every update will check for key inputs and call
+listeners as appropriate.
+
+Input Format
+----------------------------------------
+*.xsp 
+
+mass x(double) y(double) mass(double)
+spring mass1id(int) mass2id(int) restlength(double) springconstant(double)
+muscle mass1id(int) mass2id(int) restlength(double) springconstant(double) amplitude(double)
+
+
+
+environment.xsp
+
+gravity angle(double) magnitude(double) 
+viscosity scale(double)
+centermass magnitude(double) exponent(double)
+wall id(int) magnitude(double) exponent(double)
+
+If every type of global force is not implemented, a default force will be put in for them.
+
+----------------------------------------
+
