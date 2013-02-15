@@ -74,11 +74,10 @@ public class Model {
             myUserSpring = null;
         }
         for (Assembly a : myAssemblies) {
-            a.updateSprings(elapsedTime, myBounds);
             for (GlobalForce f : myGlobalForces) {
                 f.applyForceIfToggledOn(a, myBounds);
             }
-            a.updateMasses(elapsedTime, myBounds);
+            a.update(elapsedTime, myBounds);
         }
     }
 

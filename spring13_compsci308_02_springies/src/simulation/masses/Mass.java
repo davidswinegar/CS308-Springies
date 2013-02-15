@@ -20,7 +20,8 @@ public class Mass extends Sprite {
     public static final Pixmap DEFUALT_IMAGE = new Pixmap("mass.gif");
 
     private double myMass;
-    private Vector myAcceleration;
+    private Vector myTotalForce;
+    private double myForceScale;
 
     /**
      * Constructs the Mass given its position and mass.
@@ -28,7 +29,7 @@ public class Mass extends Sprite {
     public Mass (double x, double y, double mass) {
         super(DEFUALT_IMAGE, new Location(x, y), DEFAULT_SIZE);
         myMass = mass;
-        myAcceleration = new Vector();
+        myTotalForce = new Vector();
     }
 
     /**
@@ -37,9 +38,12 @@ public class Mass extends Sprite {
     @Override
     public void update (double elapsedTime, Dimension bounds) {
         applyForce(getBounce(bounds));
-        // convert force back into Mover's velocity
-        getVelocity().sum(myAcceleration);
-        myAcceleration.reset();
+        // scale force
+        myTotalForce.scale(myForceScale);
+        // convert force into acceleration  and then Mover's velocity
+        myTotalForce.scale(1/myMass);
+        getVelocity().sum(myTotalForce);
+        myTotalForce.reset();
         // move mass by velocity
         super.update(elapsedTime, bounds);
     }
@@ -57,7 +61,7 @@ public class Mass extends Sprite {
      * Use the given force to change this mass's acceleration.
      */
     public void applyForce (Vector force) {
-        myAcceleration.sum(force);
+        myTotalForce.sum(force);
     }
 
     /**
@@ -66,7 +70,7 @@ public class Mass extends Sprite {
      * @param change
      */
     public void scaleAcceleration (double change) {
-        myAcceleration.scale(change);
+        myForceScale = change;
     }
 
     /**
