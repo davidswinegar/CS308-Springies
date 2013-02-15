@@ -8,9 +8,14 @@ Springies simulates some parts of the Soda Constructor (sodaplay.com). It takes 
 
 Overview
 ----------------------------------------
-The simulation begins by asking for the input of a list of masses and springs followed the input of global environment variables (the format of the input can be found in the section titled "Input Format" below. These inputs are then processed by AssemblyFactory and ForceFactory to be applied to the Model.
+The simulation begins by asking for the input of a list of masses and springs followed the input of global environment 
+variables (the format of the input can be found in the section titled "Input Format" below. These inputs are then processed 
+by AssemblyFactory and ForceFactory to be applied to the Model.
 
-Model is the main compoenent of the simulation, containing the list of assemblies to be simulated and listening for key and mouse inputs for user interaction. As model updates, it will call each individual assembly to update which will then call the individual masses and springs to update, leading to changes based on mass and spring interaction as well as global force interactions. All of these elements will then be drawn on the Canvas using Graphics2D.
+Model is the main compoenent of the simulation, containing the list of assemblies to be simulated and listening for key 
+and mouse inputs for user interaction. As model updates, it will call each individual assembly to update which will then 
+call the individual masses and springs to update, leading to changes based on mass and spring interaction as well as global 
+force interactions. All of these elements will then be drawn on the Canvas using Graphics2D.
 
 Input Format
 ----------------------------------------
