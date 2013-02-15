@@ -13,26 +13,37 @@ import util.Vector;
  * Mass object which is acted upon by various forces in this physics simulator.
  * 
  * @author Robert C. Duvall
+ * @author David Le
+ * @author David Winegar
  */
 public class Mass extends Sprite {
     // reasonable default values
+    /**
+     * Default dimensions of mass
+     */
     public static final Dimension DEFAULT_SIZE = new Dimension(16, 16);
+    /**
+     * Default image for mass
+     */
     public static final Pixmap DEFUALT_IMAGE = new Pixmap("mass.gif");
 
-    private double myMass;
     private Vector myTotalForce;
 
     /**
      * Constructs the Mass given its position and mass.
+     * @param x coordinate of mass
+     * @param y coordinate of mass
+     * @param mass weight
      */
     public Mass (double x, double y, double mass) {
         super(DEFUALT_IMAGE, new Location(x, y), DEFAULT_SIZE);
-        myMass = mass;
         myTotalForce = new Vector();
     }
 
     /**
      * Updates the mass to move according to forces and be redrawn.
+     * @param elapsedTime since last update
+     * @param bounds of model
      */
     @Override
     public void update (double elapsedTime, Dimension bounds) {
@@ -48,6 +59,7 @@ public class Mass extends Sprite {
 
     /**
      * Redraws mass.
+     * @param pen to draw mass on canvas
      */
     @Override
     public void paint (Graphics2D pen) {
@@ -57,6 +69,7 @@ public class Mass extends Sprite {
 
     /**
      * Use the given force to change this mass's acceleration.
+     * @param force to be applied
      */
     public void applyForce (Vector force) {
         myTotalForce.sum(force);
@@ -64,6 +77,7 @@ public class Mass extends Sprite {
 
     /**
      * Convenience method.
+     * @param other mass to calculate distance to
      */
     public double distance (Mass other) {
         // this is a little awkward, so hide it
