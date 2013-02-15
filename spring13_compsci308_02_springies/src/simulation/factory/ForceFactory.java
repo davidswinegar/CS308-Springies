@@ -63,13 +63,10 @@ public class ForceFactory extends Factory {
     @Override
     protected void loadItemsIntoModel () {
         Model model = getModel();
-        model.add(KeyEvent.VK_M, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_M)));
-        model.add(KeyEvent.VK_G, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_G)));
-        model.add(KeyEvent.VK_1, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_1)));
-        model.add(KeyEvent.VK_2, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_2)));
-        model.add(KeyEvent.VK_3, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_3)));
-        model.add(KeyEvent.VK_4, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_4)));
-        model.add(KeyEvent.VK_V, new GlobalForceListener(myGlobalForces.get(KeyEvent.VK_V)));
+        
+        for(Integer i : myGlobalForces.keySet()) {
+            model.add(i, new GlobalForceListener(myGlobalForces.get(i)));
+        }
         
         List<GlobalForce> forceList = new ArrayList<GlobalForce>(myGlobalForces.values());
         model.addGlobalForces(forceList);        

@@ -73,5 +73,9 @@ public class Assembly {
             myUserSpring = null;
         }
     }
+    
+    public boolean hasMasses () {
+        return !myMasses.isEmpty();
+    }
 
 }

@@ -21,7 +21,6 @@ public class Mass extends Sprite {
 
     private double myMass;
     private Vector myTotalForce;
-    private double myForceScale;
 
     /**
      * Constructs the Mass given its position and mass.
@@ -38,10 +37,9 @@ public class Mass extends Sprite {
     @Override
     public void update (double elapsedTime, Dimension bounds) {
         applyForce(getBounce(bounds));
-        // scale force
-       // myTotalForce.scale(myForceScale);
-        // convert force into acceleration  and then Mover's velocity
+        // convert force into acceleration 
         //myTotalForce.scale(1/myMass);
+        //  and then Mover's velocity
         getVelocity().sum(myTotalForce);
         myTotalForce.reset();
         // move mass by velocity
@@ -62,15 +60,6 @@ public class Mass extends Sprite {
      */
     public void applyForce (Vector force) {
         myTotalForce.sum(force);
-    }
-
-    /**
-     * Scales the acceleration by the amount passed in.
-     * 
-     * @param change
-     */
-    public void scaleAcceleration (double change) {
-        myForceScale = change;
     }
 
     /**

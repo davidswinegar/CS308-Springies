@@ -222,9 +222,7 @@ public class Canvas extends JComponent {
     private void loadEnvironment () {
         Factory forceFactory = new ForceFactory(mySimulation);
         int response = INPUT_CHOOSER.showDialog(null, "Environment file");
-        String responseName = INPUT_CHOOSER.getSelectedFile().getName();
-        //TODO testing purposes remove the comment
-        if (response == JFileChooser.APPROVE_OPTION /*&& responseName.equals(ENVIRONMENT_NAME) */) {
+        if (response == JFileChooser.APPROVE_OPTION) {
             forceFactory.loadFile(INPUT_CHOOSER.getSelectedFile());
         }
     }

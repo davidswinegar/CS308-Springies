@@ -87,13 +87,12 @@ public class Model {
     public void changeBoundsSize (int amount) {
         myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
     }
-    
-    private void checkMassesExist() {
-        
-    }
 
     private void updateUserSpring () {
         Point mousePosition = myView.getLastMousePosition();
+        if(myAssemblies.isEmpty()){
+            return;
+        }
         if (myUserSpring == null) {
             double minDistance = MAX_DISTANCE;
             Assembly targetAssembly = null;

@@ -39,7 +39,9 @@ public class AssemblyFactory extends Factory {
     
     @Override
     protected void loadItemsIntoModel () {
-        getModel().add(myAssembly);
+        if(myAssembly.hasMasses()){
+            getModel().add(myAssembly);
+        }
     }
 
     @Override

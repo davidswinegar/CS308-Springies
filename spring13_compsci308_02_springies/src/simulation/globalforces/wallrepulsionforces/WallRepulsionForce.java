@@ -17,7 +17,7 @@ import util.Vector;
 public abstract class WallRepulsionForce extends GlobalForce {
 
     private static final int DEFAULT_EXPONENT = -1;
-    private static final double DEFAULT_MAGNITUDE = .5;
+    private static final double DEFAULT_MAGNITUDE = .1;
 
     // state used to determine force vector
     private double myDirection;
