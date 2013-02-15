@@ -38,9 +38,10 @@ import simulation.factory.ForceFactory;
  * @author David Le
  */
 public class Canvas extends JComponent {
-    // default serialization ID
-    private static final long serialVersionUID = 1L;
-    // animate 25 times per second if possible
+    
+    /**
+     * Animate 25 times per second if possible.
+     */
     public static final int FRAMES_PER_SECOND = 25;
     // better way to think about timed events (in milliseconds)
     public static final int ONE_SECOND = 1000;
@@ -51,6 +52,8 @@ public class Canvas extends JComponent {
     // input state
     public static final int NO_KEY_PRESSED = -1;
     public static final Point NO_MOUSE_PRESSED = null;
+    // default serialization ID
+    private static final long serialVersionUID = 1L;
 
     // drives the animation
     private Timer myTimer;
