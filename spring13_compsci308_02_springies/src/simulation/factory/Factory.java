@@ -19,6 +19,7 @@ public abstract class Factory {
     }
 
     public void loadFile (File modelFile) {
+        initializeReadFile ();
         
         try {
             Scanner input = new Scanner(modelFile);
@@ -40,9 +41,7 @@ public abstract class Factory {
 
     protected abstract void processInput (Scanner line, String type);
     
-    protected abstract void initializeReadFile ();
+    protected  void initializeReadFile (){}
     
-    protected void loadItemsIntoModel () {
-        
-    }
+    protected abstract void loadItemsIntoModel () ;
 }

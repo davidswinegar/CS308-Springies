@@ -77,7 +77,6 @@ public class ForceFactory extends Factory {
     
     @Override
     protected void initializeReadFile () {
-        getModel().clearAllAssemblies();
         initializeGlobalForces();
     }
 

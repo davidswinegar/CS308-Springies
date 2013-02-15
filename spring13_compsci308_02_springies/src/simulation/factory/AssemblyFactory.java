@@ -38,7 +38,7 @@ public class AssemblyFactory extends Factory {
     }
     
     @Override
-    protected void initializeReadFile () {
+    protected void loadItemsIntoModel () {
         getModel().add(myAssembly);
     }
 
@@ -69,6 +69,7 @@ public class AssemblyFactory extends Factory {
             result = new FixedMass(x, y, mass);
         }
         myMasses.put(id, result);
+
         return result;
     }
 

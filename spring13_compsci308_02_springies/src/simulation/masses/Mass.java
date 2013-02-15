@@ -39,9 +39,9 @@ public class Mass extends Sprite {
     public void update (double elapsedTime, Dimension bounds) {
         applyForce(getBounce(bounds));
         // scale force
-        myTotalForce.scale(myForceScale);
+       // myTotalForce.scale(myForceScale);
         // convert force into acceleration  and then Mover's velocity
-        myTotalForce.scale(1/myMass);
+        //myTotalForce.scale(1/myMass);
         getVelocity().sum(myTotalForce);
         myTotalForce.reset();
         // move mass by velocity

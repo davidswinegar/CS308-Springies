@@ -59,6 +59,8 @@ public class Model {
         for (Assembly a : myAssemblies) {
             a.paint(pen);
         }
+        
+
     }
 
     /**
@@ -79,10 +81,15 @@ public class Model {
             }
             a.update(elapsedTime, myBounds);
         }
+
     }
 
     public void changeBoundsSize (int amount) {
         myBounds.setSize(myBounds.getWidth() + amount, myBounds.getHeight() + amount);
+    }
+    
+    private void checkMassesExist() {
+        
     }
 
     private void updateUserSpring () {
@@ -134,7 +141,7 @@ public class Model {
      * Removes all assemblies from the simulation.
      */
     public void clearAllAssemblies () {
-        myAssemblies = new ArrayList<Assembly>();
+       myAssemblies = new ArrayList<Assembly>();
     }
 
     public void getLastKeyAndCallListener () {
