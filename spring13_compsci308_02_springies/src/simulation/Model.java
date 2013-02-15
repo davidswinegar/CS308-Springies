@@ -117,11 +117,6 @@ public class Model {
         myGlobalForces = forces;
     }
 
-    // TODO temp method, remove later
-    public void add (GlobalForce force) {
-        myGlobalForces.add(force);
-    }
-
     /**
      * Add given assembly to this simulation.
      */

@@ -30,6 +30,7 @@ public abstract class Factory {
                 }
             }
             input.close();
+            loadItemsIntoModel();
         }
         catch (FileNotFoundException e) {
             // should not happen because File came from user selection
@@ -40,4 +41,8 @@ public abstract class Factory {
     protected abstract void processInput (Scanner line, String type);
     
     protected abstract void initializeReadFile ();
+    
+    protected void loadItemsIntoModel () {
+        
+    }
 }

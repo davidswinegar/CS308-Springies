@@ -217,13 +217,14 @@ public class Canvas extends JComponent {
             assemblyFactory.loadFile(INPUT_CHOOSER.getSelectedFile());
         }
     }
-
+    
     // loads environment file chosen by user and checks for environment name match
     private void loadEnvironment () {
-        ForceFactory forceFactory = new ForceFactory(mySimulation);
+        Factory forceFactory = new ForceFactory(mySimulation);
         int response = INPUT_CHOOSER.showDialog(null, "Environment file");
         String responseName = INPUT_CHOOSER.getSelectedFile().getName();
-        if (response == JFileChooser.APPROVE_OPTION && responseName.equals(ENVIRONMENT_NAME)) {
+        //TODO testing purposes remove the comment
+        if (response == JFileChooser.APPROVE_OPTION /*&& responseName.equals(ENVIRONMENT_NAME) */) {
             forceFactory.loadFile(INPUT_CHOOSER.getSelectedFile());
         }
     }
