@@ -44,9 +44,12 @@ public class Canvas extends JComponent {
      */
     public static final int FRAMES_PER_SECOND = 25;
     /**
-     * Better way to think about timed events (in milliseconds)
+     * Defines one second (in milliseconds)
      */
     public static final int ONE_SECOND = 1000;
+    /**
+     * Defines default delay based on seconds and frames per second
+     */
     public static final int DEFAULT_DELAY = ONE_SECOND / FRAMES_PER_SECOND;
     /**
      * Maintains user's preferences
