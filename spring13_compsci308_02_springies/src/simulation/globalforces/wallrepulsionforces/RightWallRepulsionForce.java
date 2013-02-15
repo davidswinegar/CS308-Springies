@@ -13,12 +13,17 @@ import util.Sprite;
  */
 public class RightWallRepulsionForce extends WallRepulsionForce {
 
+    /**
+     * Sends direction to superconstructor.
+     */
     public RightWallRepulsionForce () {
         super(Sprite.LEFT_DIRECTION);
     }
 
     /**
      * Sends info to superconstructor.
+     * @param magnitude used to calculate force
+     * @param exponent used to calculate force
      */
     public RightWallRepulsionForce (double magnitude,
                                     double exponent) {
@@ -27,6 +32,8 @@ public class RightWallRepulsionForce extends WallRepulsionForce {
 
     /**
      * Calculates distance between mass and right wall.
+     * @param mass used to get location
+     * @param bounds used to get distance from bounds
      */
     @Override
     public double getDistance (Mass mass, Dimension bounds) {

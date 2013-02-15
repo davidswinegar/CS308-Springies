@@ -3,7 +3,7 @@ Here is what is properly accepted in data files.
 
 *.xsp 
 
-mass id(int) x(double) y(double) mass(double)
+mass x(double) y(double) mass(double)
 spring mass1id(int) mass2id(int) restlength(double) springconstant(double)
 muscle mass1id(int) mass2id(int) restlength(double) springconstant(double) amplitude(double)
 

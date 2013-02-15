@@ -59,10 +59,10 @@ public class AssemblyFactory extends Factory {
 
     // create mass from formatted data
     private Mass addMass (Scanner line) {
-        int id = line.nextInt();
         double x = line.nextDouble();
         double y = line.nextDouble();
         double mass = line.nextDouble();
+        int id = myMasses.size() + 1;
         Mass result;
         if (mass > 0) {
             result = new Mass(x, y, mass);
